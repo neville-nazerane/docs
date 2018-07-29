@@ -27,6 +27,9 @@ namespace Docs.Core
         public string GitUrl => $"https://github.com/neville-nazerane/{GitRepo}";
 
         [NotMapped]
+        public string GitClone => $"git clone {GitUrl}.git";
+
+        [NotMapped]
         public string NugetUrl => $"https://www.nuget.org/packages/{Name}/";
 
     }

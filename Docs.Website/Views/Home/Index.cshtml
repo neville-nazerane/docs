@@ -15,12 +15,23 @@
         </div>
         <div class="card-body">
             <p class="card-text">@package.Description</p>
+            <a class="card-link" data-toggle="collapse" href="#cli-@package.Id">
+                Command line... 
+            </a>
+            <div id="cli-@package.Id" class="collapse">
+                <div> <b>.NET CLI:</b><code>dotnet new package @package.Name</code></div>
+                <div><b>Package manager:</b><code>Install-Package @package.Name</code></div>
+                <div><b>Git:</b><code>git clone @package.GitClone</code></div>
+            </div>
         </div>
         <div class="card-footer">
-            <a class="btn btn-github" href="@package.GitUrl">
-                <i class="fab fa-github"></i>
-                @package.GitRepo
-            </a>
+            @if (package.GitRepo != null)
+            {
+                <a class="btn btn-github" href="@package.GitUrl">
+                    <i class="fab fa-github"></i>
+                    @package.GitRepo
+                </a>
+            }
             @if (package.HasDocumentation)
             {
                 <a class="btn btn-success" href="~/@package.Name">
