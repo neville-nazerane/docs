@@ -54,7 +54,7 @@ namespace Docs.AdminWebsite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,GitRepo,HasDocumentation")] Package package)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,GitRepo,IsDisplayed,HasDocumentation")] Package package)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Docs.AdminWebsite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,GitRepo,HasDocumentation")] Package package)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,GitRepo,IsDisplayed,HasDocumentation")] Package package)
         {
             if (id != package.Id)
             {
