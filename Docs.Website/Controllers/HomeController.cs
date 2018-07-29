@@ -16,7 +16,10 @@ namespace Docs.Website.Controllers
         public HomeController(AppDbContext context) => this.context = context;
 
         public IActionResult Index() 
-                => View(context.Packages.OrderBy(p => p.Name));
+                => View(from p in context.Packages
+                        where p.IsDisplayed
+                        orderby p.Name
+                        select p);
 
         public IActionResult Privacy() => View();
 

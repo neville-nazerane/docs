@@ -21,6 +21,9 @@ namespace Docs.Core
         public string GitRepo { get; set; }
 
         [Required]
+        public bool IsDisplayed { get; set; }
+
+        [Required]
         public bool HasDocumentation { get; set; }
 
         [NotMapped]
