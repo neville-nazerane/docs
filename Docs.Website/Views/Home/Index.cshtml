@@ -8,7 +8,6 @@
 <div class="card-columns">
 @foreach (var package in Model)
 {
-    string docStatus = package.HasDocumentation ? "" : "disabled";
 
     <div class="card bg-light">
         <div class="card-header">
@@ -22,10 +21,13 @@
                 <i class="fab fa-github"></i>
                 @package.GitRepo
             </a>
-            <a class="btn btn-success @docStatus" href="~/@package.Name">
-                <i class="far fa-file"></i>
-                Docs
-            </a>
+            @if (package.HasDocumentation)
+            {
+                <a class="btn btn-success" href="~/@package.Name">
+                    <i class="far fa-file"></i>
+                    Docs
+                </a>
+            }
         </div>
     </div>
 }

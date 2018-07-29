@@ -19,6 +19,12 @@ namespace Docs.Website
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseConfiguration(
+                    new ConfigurationBuilder()
+                    .AddJsonFile(
+                            Path.Combine(Directory.GetCurrentDirectory(), @"..\secrets\nev_docs.json"), true)
+                    .Build()
+                )
                 .UseStartup<Startup>();
     }
 }
