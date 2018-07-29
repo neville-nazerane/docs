@@ -1,3 +1,33 @@
-﻿@{
+﻿@model IEnumerable<Package>
+
+@{
     ViewData["Title"] = "Home";
 }
+
+
+<div class="card-columns">
+@foreach (var package in Model)
+{
+    string docStatus = package.HasDocumentation ? "" : "disabled";
+
+    <div class="card bg-light">
+        <div class="card-header">
+            <a href="@package.NugetUrl">@package.Name</a>
+        </div>
+        <div class="card-body">
+            <p class="card-text">@package.Description</p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-github" href="@package.GitUrl">
+                <i class="fab fa-github"></i>
+                @package.GitRepo
+            </a>
+            <a class="btn btn-success @docStatus" href="~/@package.Name">
+                <i class="far fa-file"></i>
+                Docs
+            </a>
+        </div>
+    </div>
+}
+</div>
+

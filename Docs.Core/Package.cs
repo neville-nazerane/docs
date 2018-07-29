@@ -20,6 +20,9 @@ namespace Docs.Core
         [MaxLength(100)]
         public string GitRepo { get; set; }
 
+        [Required]
+        public bool HasDocumentation { get; set; }
+
         [NotMapped]
         public string GitUrl => $"https://github.com/neville-nazerane/{GitRepo}";
 

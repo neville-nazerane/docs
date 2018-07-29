@@ -33,8 +33,7 @@ namespace Docs.AdminWebsite
             });
 
             services.AddDbContext<AppDbContext>(config => {
-                config.UseSqlServer(Configuration.GetConnectionString("sqlDb"),
-                             b => b.MigrationsAssembly("Docs.AdminWebsite"));
+                config.UseSqlServer(Configuration.GetConnectionString("sqlDb"));
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
