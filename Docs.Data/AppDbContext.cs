@@ -15,5 +15,11 @@ namespace Docs.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Package>().HasIndex(p => p.Name).IsUnique();
+        }
+
     }
 }
