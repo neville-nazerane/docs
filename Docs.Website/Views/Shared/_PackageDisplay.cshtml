@@ -1,0 +1,34 @@
+@model Package
+
+<div class="card bg-light">
+    <div class="card-header">
+        <a href="@Model.NugetUrl">@Model.Name</a>
+    </div>
+    <div class="card-body">
+        <p class="card-text">@Model.Description</p>
+        <a class="card-link" data-toggle="collapse" href="#cli-@Model.Id">
+            Command line...
+        </a>
+        <div id="cli-@Model.Id" class="collapse">
+            <div> <b>.NET CLI:</b><code>dotnet new Model @Model.Name</code></div>
+            <div><b>Model manager:</b><code>Install-Model @Model.Name</code></div>
+            <div><b>Git:</b><code>git clone @Model.GitClone</code></div>
+        </div>
+    </div>
+    <div class="card-footer">
+        @if (Model.GitRepo != null)
+        {
+            <a class="btn btn-github" href="@Model.GitUrl">
+                <i class="fab fa-github"></i>
+                @Model.GitRepo
+            </a>
+        }
+        @if (Model.HasDocumentation)
+        {
+            <a class="btn btn-success" href="~/@Model.Name">
+                <i class="far fa-file"></i>
+                Docs
+            </a>
+        }
+    </div>
+</div>

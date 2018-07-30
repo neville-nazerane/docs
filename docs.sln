@@ -5,13 +5,15 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docs.Website", "Docs.Website\Docs.Website.csproj", "{CE8140F0-FEB9-4A8E-A8FC-368C048C0B4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docs.Core", "Docs.Core\Docs.Core.csproj", "{B22B6E8C-96F4-4412-A22E-1C10CEE87305}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docs.Core", "Docs.Core\Docs.Core.csproj", "{B22B6E8C-96F4-4412-A22E-1C10CEE87305}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docs.Data", "Docs.Data\Docs.Data.csproj", "{54CC9E77-13F9-42F7-B47D-DAC170B819DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docs.Data", "Docs.Data\Docs.Data.csproj", "{54CC9E77-13F9-42F7-B47D-DAC170B819DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docs.Migrations", "Docs.Migration\Docs.Migrations.csproj", "{14612053-A8DA-4713-8518-2AF5CD8B9DDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docs.Migrations", "Docs.Migration\Docs.Migrations.csproj", "{14612053-A8DA-4713-8518-2AF5CD8B9DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docs.AdminWebsite", "Docs.AdminWebsite\Docs.AdminWebsite.csproj", "{4D41897E-592D-4429-8549-3FF999A0EF35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docs.AdminWebsite", "Docs.AdminWebsite\Docs.AdminWebsite.csproj", "{4D41897E-592D-4429-8549-3FF999A0EF35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docs.Models", "Docs.Models\Docs.Models.csproj", "{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,18 @@ Global
 		{4D41897E-592D-4429-8549-3FF999A0EF35}.Release|x64.Build.0 = Release|Any CPU
 		{4D41897E-592D-4429-8549-3FF999A0EF35}.Release|x86.ActiveCfg = Release|Any CPU
 		{4D41897E-592D-4429-8549-3FF999A0EF35}.Release|x86.Build.0 = Release|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Debug|x64.Build.0 = Debug|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Debug|x86.Build.0 = Debug|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Release|x64.ActiveCfg = Release|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Release|x64.Build.0 = Release|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A5A4F07-AA58-4AD0-B983-EC1DF8FD1CF1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

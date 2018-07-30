@@ -12,6 +12,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Docs.Core\Docs.Core.csproj" />
     <ProjectReference Include="..\Docs.Data\Docs.Data.csproj" />
+    <ProjectReference Include="..\Docs.Models\Docs.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Shared\_ValidationScriptsPartial - Copy.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>
