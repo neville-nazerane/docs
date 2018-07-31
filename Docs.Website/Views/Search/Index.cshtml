@@ -5,10 +5,11 @@
 }
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Packages</h3>
+        <h3 class="card-title float-left">Packages</h3>
+        <a class="float-right" href="#package-results" data-toggle="collapse">Expand/Collapse</a>
     </div>
-    <div class="card-body">
-        <div class="">
+    <div class="card-body collapse show" id="package-results">
+        <div>
             @foreach (var package in Model.Packages)
             {
                 <partial name="_PackageDisplay" model="package" />
@@ -19,9 +20,10 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Gits</h3>
+        <h3 class="card-title float-left">Gits</h3>
+        <a class="float-right" href="#git-results" data-toggle="collapse">Expand/Collapse</a>
     </div>
-    <div class="card-body">
+    <div class="card-body collapse show" id="git-results">
         @foreach (var gits in Model.GitRepos)
         {
             <div class="card">
