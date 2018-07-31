@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Docs.Core.Tag>
 
 @{
-   
+
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -19,22 +19,23 @@
         </tr>
     </thead>
     <tbody>
-@foreach (Tag tag in Model) {
-    var deleteData = new Dictionary<string, string> {
-        { nameof(PackageTag.PackageId), ViewBag.id.ToString() },
-        { nameof(PackageTag.TagId), tag.Id.ToString() }
-    };
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => tag.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => tag.Importance)
-            </td>
-            <td>
-                <a asp-action="Delete" asp-all-route-data="deleteData">Delete</a>
-            </td>
-        </tr>
+        @foreach (Tag tag in Model)
+        {
+            var deleteData = new Dictionary<string, string> {
+            { nameof(PackageTag.PackageId), ViewBag.id.ToString() },
+            { nameof(PackageTag.TagId), tag.Id.ToString() }
+        };
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => tag.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => tag.Importance)
+        </td>
+        <td>
+            <a asp-action="Delete" asp-all-route-data="deleteData">Delete</a>
+        </td>
+    </tr>
 }
     </tbody>
 </table>

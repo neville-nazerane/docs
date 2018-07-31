@@ -2,6 +2,7 @@
 using Docs.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +31,25 @@ namespace Docs.AdminWebsite.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(PackageTag tag)
+        public IActionResult Add(PackageTag p)
         {
-            context.Add(tag);
-            context.SaveChanges();
-            return RedirectToAction(nameof(Index), new { id = tag.PackageId });
-        }
+            if (p.Tag?.Title == null)
+                context.Add(new PackageTag
+                {
+                    PackageId = p.PackageId,
+                    TagId = p.TagId
+                });
+            else
+                context.Add(new PackageTag
+                {
+                    PackageId = p.PackageId,
+                    Tag = p.Tag
+                });
 
+            context.SaveChanges();
+            return RedirectToAction(nameof(Index), new { id = p.PackageId });
+        }
+        
         [HttpGet]
         public IActionResult Delete(PackageTag tag)
         {
