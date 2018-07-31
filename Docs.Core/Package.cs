@@ -26,6 +26,8 @@ namespace Docs.Core
         [Required]
         public bool HasDocumentation { get; set; }
 
+        public IEnumerable<PackageTag> Tags { get; set; }
+
         [NotMapped]
         public string GitUrl => $"https://github.com/neville-nazerane/{GitRepo}";
 

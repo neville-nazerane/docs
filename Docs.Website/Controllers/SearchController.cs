@@ -2,6 +2,7 @@
 using Docs.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,11 @@ namespace Docs.Website.Controllers
 
         public IActionResult Index(string q)
         {
+            if (string.IsNullOrWhiteSpace(q)) return Redirect("~/");
             ViewBag.q = q;
-
             return View(new SearchResults
             {
-                Packages = from pt in context.PackageTags
-                           where pt.Package.Name.Contains(q, StringComparison.InvariantCultureIgnoreCase) 
-                                            || q.Contains(pt.Tag.Title, StringComparison.InvariantCultureIgnoreCase)
-                           select pt.Package,
+                Packages = context.Packages.Where(p => p.Name.Contains(q) || p.Tags.Any(t => q.Contains(t.Tag.Title))),
                 GitRepos = context.Packages.Where(p => p.GitRepo.Contains(q))
                                              .GroupBy(p => p.GitRepo)
                                              .ToDictionary(g => g.Key, g => g.AsEnumerable())
