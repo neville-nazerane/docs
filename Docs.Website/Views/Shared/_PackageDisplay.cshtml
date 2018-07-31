@@ -10,9 +10,10 @@
             Command line...
         </a>
         <div id="cli-@Model.Id" class="collapse">
-            <div> <b>.NET CLI:</b><code>dotnet new package @Model.Name</code></div>
-            <div><b>Model manager:</b><code>Install-Package @Model.Name</code></div>
-            <div><b>Git:</b><code>git clone @Model.GitClone</code></div>
+            
+            <pre><b>.NET CLI:</b><code>dotnet new package @Model.Name</code></pre>
+            <pre><b>Package manager:</b><code>Install-Package @Model.Name</code></pre>
+            <pre><b>Git:</b><code>@Model.GitClone</code></pre>
         </div>
     </div>
     <div class="card-footer">
