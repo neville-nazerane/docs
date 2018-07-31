@@ -4,7 +4,7 @@
 
     string gitLink = Document.Package?.GitUrl ?? "https://github.com/neville-nazerane";
     string nugetLink = Document.Package?.NugetUrl ?? "https://www.nuget.org/profiles/Neville.Nazerane";
-    string title = Document.Package?.Name ?? (ViewData["Title"].ToString());
+    string title = Document.Package?.Name ?? (ViewData["Title"]?.ToString());
 
 }
 
