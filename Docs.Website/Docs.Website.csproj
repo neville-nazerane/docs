@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\NetCore_Angular\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\NetCore_Azure_Blob\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

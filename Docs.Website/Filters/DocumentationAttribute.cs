@@ -10,27 +10,24 @@ using System.Threading.Tasks;
 
 namespace Docs.Website.Filters
 {
-    public class DocumentationAttribute : Attribute, IResourceFilter
+    public class DocumentationAttribute : RouteAttribute, IResourceFilter
     {
 
-        public string NugetName { get; }
+        public string PackageName { get; }
 
-        public DocumentationAttribute(string PackageName)
+        public DocumentationAttribute(string packageName) : base(packageName + "/{[action]=index}")
         {
-            NugetName = PackageName;
-        }
-
-        public void OnResourceExecuted(ResourceExecutedContext context)
-        {
-
+            PackageName = packageName;
         }
 
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
             var document = context.HttpContext.RequestServices.GetService<CurrentDocument>();
 
-            var package = document.AssignPackage(NugetName);
+            var package = document.AssignPackage(PackageName);
             if (package == null) context.Result = new NotFoundResult();
         }
+
+        public void OnResourceExecuted(ResourceExecutedContext context) { }
     }
 }
