@@ -1,0 +1,18 @@
+﻿
+<p>
+    A simple error would just be a string that isn't mapped to any model or key. These can 
+    be added as a simple string.
+</p>
+
+<pre><code>modelValition.AddError("A simple error has occurred")</code></pre>
+
+<p>
+    This code basically adds an error with it's key as an empty string. All such errors
+    can be accessed with the <i>GetErrors</i> function.
+</p>
+
+<pre><code>IEnumerable<string> simpleErrors = modelValidation.getErrors("");</code></pre>
+
+<p>
+    This provides an IEnumerable of all strings with the key as an empty string. 
+</p>

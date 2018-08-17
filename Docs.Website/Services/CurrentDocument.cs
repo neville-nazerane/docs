@@ -30,4 +30,4 @@ namespace Docs.Website.Services
             => Package = context.Packages.SingleOrDefault(p => p.Name == name && (env.IsDevelopment() || p.HasDocumentation));
 
     }
-}
+} 

@@ -37,6 +37,12 @@
     <Content Update="Views\NetCore_Azure_Blob\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\NetCore_ModelValidation_Core\SimpleError.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\NetCore_ModelValidation_Core\Setup.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\NetCore_ModelValidation_Core\Introduction.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
