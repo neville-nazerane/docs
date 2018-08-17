@@ -1,6 +1,51 @@
 ﻿
 <p>
-    The <i>NetCore.Azure.Blob</i> package allows you to perform basic uploads to an azure blob storage by 
-    avoiding boilerplate codes and by using dependency injections. The setup is as simple as adding the connection 
-    configurations into the start up class and injecting the <i>IBlobManager</i>. 
+    The <i>NetCore.Azure.Blob</i> package allows you to perform basic uploads to an azure blob storage by
+    avoiding boilerplate codes and by using dependency injections. The setup is as simple as adding the connection
+    configurations into the start up class and injecting the <i>IBlobManager</i>.
+    Adding the service in the startup class, can be done by the following overloads:
 </p>
+
+<p>
+    The account information can be mentioned directly within the startup.
+
+    <pre>
+<code class="c#">services.AddAzureBlob(options => {
+    options.AccountName = "";
+    options.Key = "";
+    options.KeyName = "";
+});
+</code></pre>
+
+</p>
+
+
+<p>
+    To directly add options from the <i>IConfiguration</i>, the following overload can be used:
+
+    <pre>
+<code class="c#">services.AddAzureBlob(Configuration.GetSection("azureBlob"));</code>
+</pre>
+
+    In order for this to work, the secret manager or the relevant store needs to be setup with the 
+    following configuration:
+
+    <pre><code class="json">{
+    "azBlob": {
+        "keyName": "",
+        "accountName": "",
+        "key": ""
+    }
+}
+</code></pre>
+
+</p>
+
+<p>
+    Once the startup is setup, the <i>IBlobManager</i> can be accessed via dependency injection.
+    <a href="https://github.com/neville-nazerane/netcore.azure.blob/blob/master/TestWebsite/Controllers/UploadController.cs">This class on github</a>
+    demonstrates the usage of the IBlobManager. The blob manager provides a series of functions to get the client, get a container and 
+    to upload into a container. The <i>AddToContainer</i> function uploads the image to the specified container with a 
+    newly generated filename and then returns the file name. 
+</p>
+

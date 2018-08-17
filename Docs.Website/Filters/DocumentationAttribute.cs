@@ -1,4 +1,5 @@
 ﻿using Docs.Data;
+using Docs.Website.Middlewares;
 using Docs.Website.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -10,27 +11,35 @@ using System.Threading.Tasks;
 
 namespace Docs.Website.Filters
 {
-    public class DocumentationAttribute : Attribute, IResourceFilter
+    public class DocumentationAttribute : RouteAttribute, IResourceFilter
     {
 
-        public string NugetName { get; }
+        public string PackageName { get; }
+        public string DefaultAction { get; }
 
-        public DocumentationAttribute(string PackageName)
+        public bool IsReusable => true;
+
+        public DocumentationAttribute(string packageName) : base(packageName)
         {
-            NugetName = PackageName;
+            PackageName = packageName;
         }
 
-        public void OnResourceExecuted(ResourceExecutedContext context)
+        public DocumentationAttribute(string packageName, string defaultAction) : base(packageName + "/[action]")
         {
-
+            PackageName = packageName;
+            RedirectMiddleware.Redirects["/" + packageName] = $"/{packageName}/{defaultAction}";
+            DefaultAction = defaultAction;
         }
 
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
             var document = context.HttpContext.RequestServices.GetService<CurrentDocument>();
 
-            var package = document.AssignPackage(NugetName);
+            var package = document.AssignPackage(PackageName);
             if (package == null) context.Result = new NotFoundResult();
         }
+
+        public void OnResourceExecuted(ResourceExecutedContext context) { }
+
     }
 }

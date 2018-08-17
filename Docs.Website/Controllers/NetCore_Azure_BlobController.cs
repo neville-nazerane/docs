@@ -11,7 +11,6 @@ namespace Docs.Website.Controllers
 {
 
     [Documentation("NetCore.Azure.Blob")]
-    [Route("NetCore.Azure.Blob/{[action]=index}")]
     public class NetCore_Azure_BlobController : Controller
     {
 

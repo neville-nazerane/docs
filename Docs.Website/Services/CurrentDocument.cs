@@ -1,5 +1,6 @@
 ﻿using Docs.Core;
 using Docs.Data;
+using Docs.Website.Models;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace Docs.Website.Services
         private readonly IHostingEnvironment env;
 
         public Package Package { get; set; }
+
+        public IEnumerable<TabItem> TabItems { get; set; }
+
+        public bool HasTabs => TabItems?.Count() > 0;
 
         public CurrentDocument(AppDbContext context, IHostingEnvironment env)
         {
