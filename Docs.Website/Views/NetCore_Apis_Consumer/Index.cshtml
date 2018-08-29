@@ -1,0 +1,60 @@
+﻿
+<p>
+    This library provides functionalities to help consume an API (especially .NET Core API).
+    It automatically checks the HTTP status response and serializes the respective errors
+    when required. 
+</p>
+
+<p>
+    To begin with you will need an HTTP client. The <i>ApiConsumer</i> a wrapper class around
+    <i>HttpClient</i>.
+</p>
+
+<pre><code class="c#">var consumer = new ApiConsumer("http://mybaseUrl.com");</code></pre>
+
+<p>
+    The consumer object can contain the default events which would be triggered when HTTP requests 
+    are made using this consumer. The <i>ApiConsumerDefaults</i> class contains events for the various 
+    http response codes expected. 
+    <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/NetCore.Apis.Consumer.Test/TestDefaults.cs" target="_blank" >This class</a>
+    displays the various events that can be used. On creating an object of this, class, it can be assigned to <i>consumer.Defaults</i> by
+    using the following:
+</p>
+
+<pre><code class="c#">consumer.Defaults = new TestDefaults();</code></pre>
+
+<p>
+    This <i>ApiConsumer</i> class provides direct contains get, post, put
+    and delete functions that can directly pass object in the common json format and fetch objects
+    serialized into a specified type.  
+    <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/NetCore.Apis.Consumer.Test/EmployeeTest.cs" target="_blank">This test class</a>
+    shows the various ways get, post, put and delete functions can be used. 
+</p>
+
+<p>
+    These four functions called on a consumer object return an object of <i>ApiConsumedResponse</i> class. The <i>ApiConsumedResponse</i> class
+    is a wrapper around <i>HttpResponseMessage</i>. This class contains easier (as compared to HttpResponseMessage) to access properties 
+    to check the response of the HTTP response. If the HTTP request failed with a 400 (bad request), the HTTP response body is 
+    automatically attempted to be serialized and stores as a dictonary. This serialization assumes the default .NET core response
+    <i>return BadRequest(ModelState);</i> is used on the server side. 
+</p>
+
+<p>The following is an example of how a result can be checked: </p>
+
+<pre><code class="c#">ApiConsumedResponse res = await consumer.PostAsync("api/path", objectToPass);
+    if (res.IsSuccessful) 
+        Console.WriteLine("Done with response " + res.TextResponse);
+    else if (res.IsBadRequest)
+        Dictionary&lt;string, string[]> errors = res.Errors;
+    else 
+        Console.WriteLine("Got error message " + res.StatusCode)
+</code></pre>
+
+<p>
+    There is also a generic <i>ApiConsumedResponse</i> class which can directly serialize the response into the specified type.
+</p>
+
+<pre><code class="c#">ApiConsumedResponse&lt;Employee> res = await consumer.GetAsync&lt;Employee>("api/path");
+    if (res.IsSuccessful)
+        Employee emp = res; // implicit operator
+</code></pre>

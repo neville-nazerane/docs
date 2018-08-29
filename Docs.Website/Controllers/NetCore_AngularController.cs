@@ -20,9 +20,9 @@ namespace Docs.Website.Controllers
                 new TabItem(nameof(Initialization)),
                 new TabItem(nameof(Basics)),
                 new TabItem(nameof(CommonDirectives)),
-                new TabItem(nameof(AddingData)),
-                new TabItem(nameof(Forms)),
-                new TabItem(nameof(Swappable)),
+                //new TabItem(nameof(AddingData)),
+                //new TabItem(nameof(Forms)),
+                //new TabItem(nameof(Swappable)),
             };
         }
 
