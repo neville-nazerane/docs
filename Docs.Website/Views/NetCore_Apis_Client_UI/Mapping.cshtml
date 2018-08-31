@@ -1,0 +1,96 @@
+﻿
+<p>
+    Mappings help map model properties to UI components. A mapper can be created by implementing one of the
+    mapping interfaces provied. A model handler usually uses these mappers to set up the two-way bind
+    between properties and components. 
+</p>
+
+
+<h3>Error mapping</h3>
+
+<p>
+    This simpliest form of mapping is an error mappers. These help map a property's errors to a component. 
+    When a validation fails from the client or server side and error(s) linked with the property is found, 
+    the model handler uses these mappers to populate error messages. 
+</p>
+
+<p>
+    An error mapper can be created by creating a class implementing the <code>IErrorMapper</code> interface.
+    This interface mainly contains two methods
+    <ol>
+        <li>
+            <b>SetErrors: </b> This function accepts an <code>IEnumerable</code> of strings which are
+            the errors. This function needs to be configured to display the provided strings
+            into a UI component(s). 
+        </li>
+        <li>
+            <b>ClearErrors: </b> This function needs to be configured to empty the component(s) 
+            off all errors. 
+        </li>
+    </ol>
+</p>
+
+<p>
+    An example of an implementation of this mapper that maps a <code>StackLayout</code> can be found
+    <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/MobileUI/MobileUI/Mapping/StackErrorMapping.cs" target="_blank">here</a>.
+</p>
+
+
+<h3>Component mapping</h3>
+
+<p>
+    A component mapping helps map a component to a property and/or other component(s) to its errors.
+    Creating a component mapping can be done by creating a class implementing <code>IComponentMapper&lt;TData></code>,
+    where TData is the target data type. Note that <code>IComponentMapper</code> extends <code>IErrorMapper</code>, thus allowing
+    you to configure an error mapping as well. Alternatively, you can also extend an existing error mapping class for code reuse.
+</p>
+
+<p>
+    Firstly, the <code>IComponentMapper</code> contains a property called
+    <code>MappedData</code>, which is used by model handlers to get and set data from the current mapped property.
+    The <code>MappedData</code> property's get needs to return the value from a component while it's set needs to assign
+    the given value into the component. Here is an example of mapping an <code>Entry</code> to a string within a class
+    implementing <code>IComponentMapper&lt;string></code>.
+</p>
+
+<pre><code>private readonly Entry entry;
+
+public string MappedData
+{
+    get => entry.Text;
+    set => entry.Text = value;
+}
+</code></pre>
+
+<p>
+    Secondly, the function <code>Validate(List&lt;string> errors)</code> is used by the model handler
+    <b>before</b> making any HTTP calls. This function is meant to contain any validations to be done
+    one the client side before the data is sent to the server. If the validation has failed, the function 
+    needs to return false, else true. The list of items <code>errors</code> is meant for any text errors
+    that needs to be displayed on the UI. If this function returns false, the model handler would
+    display these errors on the UI. 
+</p>
+
+<p>
+    The following is an example of defining a validation in a mapper that maps an int to a <code>Entry</code>
+    in xamarin forms. The mapper extends <code>IComponentMapper&lt;int></code> in order to map an <code>Entry</code>
+    to an int. This ensures that the input entered by the user is an int. 
+</p>
+
+<pre><code>public bool Validate(List&lt;string> errors)
+ {
+    if (string.IsNullOrWhiteSpace(entry.Text) || Int32.TryParse(entry.Text, out int i)) return true;
+    errors.Add("Not in the right number format");
+    return false;
+}
+</code></pre>
+ 
+<p>
+    In addition to these functions, since <code>IComponentMapper</code> also extends the <code>IErrorMapper</code>
+    interface, error validations can also be configured into this mapper. 
+    <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/MobileUI/MobileUI/Mapping/EntryMapping.cs" target="_blank">Here</a>
+    is an example of a mapper that extends an existing error mapper. This allows an error mapper to be re-used across component
+    mappers.
+</p>
+
+
