@@ -34,6 +34,9 @@
     <Content Update="Views\NetCore_Angular\Initialization.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\NetCore_Apis_Client_UI\ModelHandler.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\NetCore_Apis_Client_UI\Submit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

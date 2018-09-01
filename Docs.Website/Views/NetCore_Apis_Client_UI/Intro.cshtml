@@ -13,15 +13,3 @@
     suitable, since it comes with pre set binders for the common data types and components.
 </p>
 
-<p>
-    The <i>ModelHandler</i> class takes the current model class to be handled as a generic type.
-    Creating a new <i>ModelHander</i> for let's say, a class named "Employee" would be as follows:
-</p>
-
-<pre><code class="c#">var mapper = new ModelHandler&lt;Employee>();</code></pre>
-
-<p>
-    Here, mapper is a model handler that for employees. It can be configured to map/bind each
-    property of <i>Employee</i> class with a component (like an input field). Each property can also be 
-    bound to a component (such as a label) for displaying error messages.
-</p>

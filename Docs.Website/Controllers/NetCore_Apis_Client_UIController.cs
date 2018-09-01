@@ -18,12 +18,15 @@ namespace Docs.Website.Controllers
         {
             document.TabItems = new TabItem[] {
                 new TabItem(nameof(Intro)),
+                new TabItem(nameof(ModelHandler)),
                 new TabItem(nameof(Mapping)),
-                new TabItem(nameof(Submit)),
+                //new TabItem(nameof(Submit)),
             };
         }
 
         public IActionResult Intro() => View();
+
+        public IActionResult ModelHandler() => View();
 
         public IActionResult Mapping() => View();
 
