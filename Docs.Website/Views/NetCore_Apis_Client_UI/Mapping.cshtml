@@ -2,16 +2,16 @@
 <p>
     Mappings help map model properties to UI components. A mapper can be created by implementing one of the
     mapping interfaces provied. A model handler usually uses these mappers to set up the two-way bind
-    between properties and components. 
+    between properties and components.
 </p>
 
 
 <h3>Error mapping</h3>
 
 <p>
-    This simpliest form of mapping is an error mappers. These help map a property's errors to a component. 
-    When a validation fails from the client or server side and error(s) linked with the property is found, 
-    the model handler uses these mappers to populate error messages. 
+    This simpliest form of mapping is an error mappers. These help map a property's errors to a component.
+    When a validation fails from the client or server side and error(s) linked with the property is found,
+    the model handler uses these mappers to populate error messages.
 </p>
 
 <p>
@@ -21,11 +21,11 @@
         <li>
             <b>SetErrors: </b> This function accepts an <code>IEnumerable</code> of strings which are
             the errors. This function needs to be configured to display the provided strings
-            into a UI component(s). 
+            into a UI component(s).
         </li>
         <li>
-            <b>ClearErrors: </b> This function needs to be configured to empty the component(s) 
-            off all errors. 
+            <b>ClearErrors: </b> This function needs to be configured to empty the component(s)
+            off all errors.
         </li>
     </ol>
 </p>
@@ -65,16 +65,16 @@ public string MappedData
 <p>
     Secondly, the function <code>Validate(List&lt;string> errors)</code> is used by the model handler
     <b>before</b> making any HTTP calls. This function is meant to contain any validations to be done
-    one the client side before the data is sent to the server. If the validation has failed, the function 
+    one the client side before the data is sent to the server. If the validation has failed, the function
     needs to return false, else true. The list of items <code>errors</code> is meant for any text errors
     that needs to be displayed on the UI. If this function returns false, the model handler would
-    display these errors on the UI. 
+    display these errors on the UI.
 </p>
 
 <p>
     The following is an example of defining a validation in a mapper that maps an int to a <code>Entry</code>
     in xamarin forms. The mapper extends <code>IComponentMapper&lt;int></code> in order to map an <code>Entry</code>
-    to an int. This ensures that the input entered by the user is an int. 
+    to an int. This ensures that the input entered by the user is an int.
 </p>
 
 <pre><code>public bool Validate(List&lt;string> errors)
@@ -84,13 +84,31 @@ public string MappedData
     return false;
 }
 </code></pre>
- 
+
 <p>
     In addition to these functions, since <code>IComponentMapper</code> also extends the <code>IErrorMapper</code>
-    interface, error validations can also be configured into this mapper. 
+    interface, error validations can also be configured into this mapper.
     <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/MobileUI/MobileUI/Mapping/EntryMapping.cs" target="_blank">Here</a>
     is an example of a mapper that extends an existing error mapper. This allows an error mapper to be re-used across component
     mappers.
 </p>
 
+<h3>Preset string mapping</h3>
+
+<p>
+    Most UI input components allow you to get and set their values as a string (like <code>Entry</code> in xamarin forms).
+    Due to this, a pre-defined class called <code>ComponentStringMapper</code> is provided to directly convert strings.
+    Extending this class will allow you to map a UI component to a string, while the class takes care of the conversions. 
+    It would also take care of the validation, making sure the string can be converted.
+</p>
+
+<p>
+    Let's say you need to map entries in xmarin forms to an int. First you will need to create a class extending
+    <code>ComponentStringMapper&le;int></code>. This class will now have to override the abstract string property
+    <code>Data</code>, mapping it to your entry's <code>Text</code> property.
+</p>
+
+<pre><code>public class 
+    
+</code></pre>
 
