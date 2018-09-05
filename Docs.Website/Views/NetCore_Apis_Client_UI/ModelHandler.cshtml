@@ -48,3 +48,25 @@
     can help in scenarios such as a hidden text field replacement.
 </p>
 
+
+<h2>Submitting</h2>
+
+<p>
+    Once a model handler is mapped to components, the handler can be submitted to a rest API. 
+    The submit function would attempt to get the current model and (if successful) would call 
+    a provided lamda function. The lamda function, is passed as a parameter returns a <code>ApiConsumedResponse</code>.
+    The submit funciton also accepts call backs for on success and error. 
+</p>
+
+<pre><code>submitBtn.Clicked += async delegate {
+    await mapper.SubmitAsync(
+        e => ConsumerDefault.Consumer.PostAsync("employee", employee),
+        s => result.Text = s
+    );
+};
+</code></pre>
+
+<p>
+    <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/MobileUI/MobileUI/MainPage.xaml.cs" target="_blank">This file</a>
+    demonstrates various ways in which the model handler can be used. 
+</p>

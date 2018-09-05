@@ -1,10 +1,17 @@
 ﻿
 <p>
-    Mappings help map model properties to UI components. A mapper can be created by implementing one of the
+    A model handler can fetch and use data from a api response created using
+    <code>NetCore.Apis.Consumer</code>. These errors are usually responses from
+    an API created using .NET Core. These responses can contain errors mapped with
+    keys (properties) or empty keys (generic errors). The model handler can map both types of errors,
+    and all properties to the UI components.
+</p>
+
+<p>
+    Property mappings help map model properties to UI components. A mapper can be created by implementing one of the
     mapping interfaces provied. A model handler usually uses these mappers to set up the two-way bind
     between properties and components.
 </p>
-
 
 <h3>Error mapping</h3>
 
@@ -31,7 +38,9 @@
 </p>
 
 <p>
-    An example of an implementation of this mapper that maps a <code>StackLayout</code> can be found
+    Once an error mapper class is created, it can be used in a model handler to map the errors with 
+    no keys to a component. This can be done by passing a new object of your error mapper in the 
+    constructor of the model handler. An example of an implementation of this mapper that maps a <code>StackLayout</code> can be found
     <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/MobileUI/MobileUI/Mapping/StackErrorMapping.cs" target="_blank">here</a>.
 </p>
 
@@ -87,10 +96,14 @@ public string MappedData
 
 <p>
     In addition to these functions, since <code>IComponentMapper</code> also extends the <code>IErrorMapper</code>
-    interface, error validations can also be configured into this mapper.
+    interface, error validations can also be configured into this mapper. Once a component mapper is created,
+    it can be mapped to a model handler using the <code>Bind()</code> function of a model handler that takes in a 
+    lamda expression (indicating the property to be mapped) and a mapper object. 
     <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/MobileUI/MobileUI/Mapping/EntryMapping.cs" target="_blank">Here</a>
     is an example of a mapper that extends an existing error mapper. This allows an error mapper to be re-used across component
-    mappers.
+    mappers. 
+    <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/MobileUI/MobileUI/Mapping/ModelMapperExtensions.cs" target="_blank">This extension class</a>
+    displays an idea on using extension functions for models.
 </p>
 
 <h3>Preset string mapping</h3>
@@ -98,7 +111,7 @@ public string MappedData
 <p>
     Most UI input components allow you to get and set their values as a string (like <code>Entry</code> in xamarin forms).
     Due to this, a pre-defined class called <code>ComponentStringMapper</code> is provided to directly convert strings.
-    Extending this class will allow you to map a UI component to a string, while the class takes care of the conversions. 
+    Extending this class will allow you to map a UI component to a string, while the class takes care of the conversions.
     It would also take care of the validation, making sure the string can be converted.
 </p>
 
@@ -108,7 +121,28 @@ public string MappedData
     <code>Data</code>, mapping it to your entry's <code>Text</code> property.
 </p>
 
-<pre><code>public class 
-    
+<pre><code>public class ComponentStringMapper&le;int>
+{
+    private readonly Entry entry;
+
+    public override string Data
+    {
+    get => entry.Text;
+    set => entry.Text = value;
+    }
+
+    public ComponentStringMapper(Entry entry)
+    {
+        this.entry = entry;
+    }
+
+    // error mappings
+
+}
 </code></pre>
 
+<p>
+    The above code ensures any text entered into an entry field is validated and (if successful) returned as an int.
+    While this simplifies the process as compared to manual conversions and validations, using this class would have
+    a much slower performance than a manual conversion.
+</p>

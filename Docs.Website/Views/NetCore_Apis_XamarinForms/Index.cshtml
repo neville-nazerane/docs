@@ -1,0 +1,46 @@
+﻿
+<p>
+    This library provides preset mappers and extension functions for model handlers that bind
+    the common UI components to the common data types in xamarin forms. For more information on
+    <a href="~/NetCore.Apis.Client.UI/ModelHandler" target="_blank">model handlers, click here</a>.
+    All extension functions return the model handler to support chaining.
+    The model handler has extension functions that are overloads of <code>Bind()</code> that 
+    provide the following mappings:
+    provide the following mappings:
+</p>
+
+<ul>
+    <li>An <code>Entry</code> to a <code>string</code> property</li>
+    <li>An <code>Editor</code> to a <code>string</code> property</li>
+    <li>An <code>Entry</code> to an <code>int</code> property</li>
+    <li>An <code>Entry</code> to an <code>int?</code> property</li>
+    <li>An <code>Entry</code> to a <code>float</code> property</li>
+    <li>An <code>Entry</code> to a <code>float?</code> property</li>
+    <li>An <code>Entry</code> to a <code>double</code> property</li>
+    <li>An <code>Entry</code> to a <code>double?</code> property</li>
+    <li>A <code>Switch</code> to a <code>bool</code> property</li>
+    <li>A <code>TimePicker</code> to a <code>DateTime</code> property</li>
+    <li>A <code>DatePicker</code> to a <code>DateTime</code> property</li>
+    <li><code>DatePicker</code> and <code>TimePicker</code> to a <code>DateTime</code> property</li>
+</ul>
+
+<p>
+    All overloads overloads of this <code>Bind()</code> have three parameters:
+</p>
+
+<ol>
+    <li>A lamda expression pointing to the target property to be mapped</li>
+    <li>The component to be mapped to</li>
+    <li>A <code>StackLayout</code>(optional) that is to be mapped with any error(s) of the target properties</li>
+</ol>
+
+<p>
+    The extension function <code>BindErrors(StackLayout)</code> can be used to map error messages with empty keys to 
+    a <code>StackLayout</code>. 
+</p>
+
+
+<p>
+    <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/XamarinTest/XamarinTest/MainPage.xaml.cs" target="_blank">This class</a>
+    shows a sample usage of these extension functions.
+</p>

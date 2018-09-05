@@ -30,7 +30,6 @@ namespace Docs.Website.Controllers
 
         public IActionResult Mapping() => View();
 
-        public IActionResult Submit() => View();
 
     }
 }
