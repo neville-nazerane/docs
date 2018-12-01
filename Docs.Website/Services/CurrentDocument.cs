@@ -2,6 +2,7 @@
 using Docs.Data;
 using Docs.Website.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Docs.Website.Services
         public Package Package { get; set; }
 
         public IEnumerable<TabItem> TabItems { get; set; }
+
+        public string CurrentTab { get; set; }
 
         public bool HasTabs => TabItems?.Count() > 0;
 

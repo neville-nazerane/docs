@@ -64,23 +64,17 @@
 
             @if (Document.HasTabs)
             {
-            <div class="row">
-                <ul class="nav flex-column col-sm-1">
+                <ul class="nav nav-tabs">
                     @foreach (var tab in Document.TabItems)
                     {
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="@tab.Action">@tab.Title</a>
+                            <tab-link class="nav-link" asp-action="@tab.Action">@tab.Title</tab-link>
                         </li>
                     }
                 </ul>
-                <div class="col-sm-11">@RenderBody()</div>
-            </div>
 
             }
-            else
-            {
-                @RenderBody()
-            }
+            @RenderBody()
         }
         else
         {

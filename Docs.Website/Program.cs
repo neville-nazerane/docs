@@ -22,32 +22,9 @@ namespace Docs.Website
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(ExternalConfiguration())
+                .UseExternalConfiguration()
+                .UseUrlsIfExists()
                 .UseStartup<Startup>();
-
-        static IConfiguration ExternalConfiguration()
-            => KeyVaultConfiguration() ?? FileConfiguration();
-
-        static IConfiguration FileConfiguration()
-            => new ConfigurationBuilder()
-                    .AddJsonFile(
-                            Path.Combine(Directory.GetCurrentDirectory(), 
-                                            @"..\secrets\nev_docs.json"), true)
-                    .Build();
-
-        static IConfiguration KeyVaultConfiguration()
-        {
-            var vaultEndPoint = Environment.GetEnvironmentVariable("KEYVAULT_ENDPOINT");
-            if (vaultEndPoint == null) return null;
-            var azureServiceTokenProvider = new AzureServiceTokenProvider();
-            var keyVaultClient = new KeyVaultClient(
-                        new KeyVaultClient.AuthenticationCallback(
-                            azureServiceTokenProvider.KeyVaultTokenCallback));
-            return new ConfigurationBuilder()
-                    .AddAzureKeyVault(vaultEndPoint, keyVaultClient, 
-                                        new DefaultKeyVaultSecretManager())
-                    .Build();
-        }
 
     }
 }
