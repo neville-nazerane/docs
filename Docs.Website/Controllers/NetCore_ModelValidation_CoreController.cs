@@ -18,16 +18,22 @@ namespace Docs.Website.Controllers
         {
             document.TabItems = new TabItem[] {
                 new TabItem(nameof(Introduction)),
-                new TabItem(nameof(Setup)),
+                //new TabItem(nameof(Setup)),
                 new TabItem(nameof(SimpleError)),
+                new TabItem(nameof(MapFields)),
+                new TabItem(nameof(MapModel)),
             };
         }
 
         public IActionResult Introduction() => View();
 
-        public IActionResult Setup() => View();
+        //public IActionResult Setup() => View();
 
         public IActionResult SimpleError() => View();
+
+        public IActionResult MapFields() => View();
+
+        public IActionResult MapModel() => View();
 
     }
 }

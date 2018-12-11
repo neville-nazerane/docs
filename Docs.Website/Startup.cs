@@ -39,6 +39,8 @@ namespace Docs.Website
             });
 
             services.AddScoped<CurrentDocument>()
+                    .AddSingleton<Contents>()
+                    .AddScoped<ValidDocs>()
                     .AddSingleton<Redirectable>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

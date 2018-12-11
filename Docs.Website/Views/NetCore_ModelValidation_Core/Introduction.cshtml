@@ -1,24 +1,14 @@
 ﻿<p>
-    This package allows you to manage error validations across services. These errors can be added and retrieved in
-    the following ways:
+    This library provides functionalities that help add and retrieve error messages that are maintained in internal
+    dictionaries. The purpose is to allow certain error messages to be added within class libraries that can
+    later be leveraged within .net core web apps or to get and verify errors in unit tests. The
+    <doc Link="NetCore.ModelValidation" /> package helps link these error messages with the <code>ModelState</code>
+    in .NET Core web projects. 
 </p>
-
-<ol>
-    <li>A simple error not mapped to anything</li>
-    <li>
-        An error mapped to a string (a key) which is expected to be the property name. Helper functions
-        also allow you to pass the key as lamda expressions for safety.
-    </li>
-    <li>
-        Error messages can also be mapped to a model (an object). Furthermore, messages can be mapped to a model 
-        and it's property (a string), which can once again be used with the help of lamda expressions. 
-    </li>
-</ol>
 
 <p>
-    These errors can be managed across services for the current scope with dependency injection. This 
-    provides flexability to assign validation errors in the business logic, verify them in unit tests and 
-    produce them in .net core web apps with the help of the <i>NetCore.ModelValidation</i> package. 
+    All error messages can be managed using an instance of the <code>ModelValidator</code>
+    class. A new instance can be created with its default constructor or using dependency injection. 
+    Dependency injection can preferably be set as a scope so as to manage errors within the current scope.
+    To add it as a service, the helper function <code>services.AddNetCoreValidations()</code>
 </p>
-
-

@@ -58,6 +58,12 @@
     <Content Update="Views\NetCore_ModelValidation\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\NetCore_ModelValidation_Core\MapFields.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\NetCore_ModelValidation_Core\MapModel.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\NetCore_ModelValidation_Core\SimpleError.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
