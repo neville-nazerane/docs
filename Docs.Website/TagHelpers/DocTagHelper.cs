@@ -16,7 +16,7 @@ namespace Docs.Website.TagHelpers
         private readonly IUrlHelperFactory urlHelperFactory;
         private readonly ValidDocs validDocs;
 
-        [ViewContext]
+        [ViewContext, HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
 
         public string Link { get; set; }
@@ -37,7 +37,7 @@ namespace Docs.Website.TagHelpers
                 {
                     output.TagName = "a";
                     output.Attributes.SetAttribute("href",
-                                urlHelperFactory.GetUrlHelper(ViewContext).Content(Link));
+                        urlHelperFactory.GetUrlHelper(ViewContext).Content("~/" + Link));
                 }
                 else
                 {
