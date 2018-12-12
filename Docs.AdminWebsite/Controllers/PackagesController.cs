@@ -22,7 +22,7 @@ namespace Docs.AdminWebsite.Controllers
         // GET: Packages
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Packages.ToListAsync());
+            return View(await _context.Packages.IgnoreQueryFilters().ToListAsync());
         }
 
         // GET: Packages/Details/5

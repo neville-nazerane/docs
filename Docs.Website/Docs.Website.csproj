@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\AspNetCore_KeyVault\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\NetCore_Angular\CommonDirectives.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

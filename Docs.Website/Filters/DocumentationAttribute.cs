@@ -34,7 +34,6 @@ namespace Docs.Website.Filters
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
             var document = context.HttpContext.RequestServices.GetService<CurrentDocument>();
-
             var package = document.AssignPackage(PackageName);
             if (package == null) context.Result = new NotFoundResult();
         }

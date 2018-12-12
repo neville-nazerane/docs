@@ -1,0 +1,35 @@
+﻿
+<h2>Prerequisites</h2>
+
+<p>
+    This setup is meant to connect .NET Core web apps to an azure keyvault. This setup assumes that you already
+    have a setup with a resource (where the website is hosted) that has access to your azure keyvault. This 
+    nuget simply reduced the need for boilerplate codes in order to add your keyvault as a configuration. An example
+    of this is a VM in azure that has identity setup and a keyvault that has enabled access to this VM. 
+</p>
+
+<h2>Usage</h2>
+
+<p>
+    In your program.cs, of your web app simply use the <code>UseKeyVaultConfiguration</code> function inside the
+    <code>CreateWebHostBuilder</code> function. Your code would look something like this:
+</p>
+
+<csharp>
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+    .UseKeyVaultConfiguration("https://myvault.keyvault.com", optional: true)
+    .UseStartup&lt;Startup>();
+</csharp>
+
+<p>
+    You might have more than one web app connected to the same keyvault. In such scenarios, you would want to seperate
+    and group the secrets of each web app. You can do this by adding a prefix followed by "--" to the key of each
+    secret. For instance, if you have two web apps SiteA and SiteB, all secrets of SiteA could have the keys starting with
+    "siteA--" and SiteB's secrets would begin with "siteB--". Once this is done, you can mention the prefix in your
+    <code>UseKeyVaultConfiguration</code> function.
+</p>
+
+<csharp>
+    .UseKeyVaultConfiguration("https://myvault.keyvault.com", "siteA", optional: true)
+</csharp>

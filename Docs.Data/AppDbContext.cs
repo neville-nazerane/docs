@@ -25,8 +25,6 @@ namespace Docs.Data
 
             modelBuilder.Entity<Package>().HasIndex(p => p.Name).IsUnique();
 
-            modelBuilder.Entity<Package>().HasQueryFilter(p => p.IsDisplayed);
-
             modelBuilder.Entity<PackageTag>().HasIndex(p => new { p.TagId, p.PackageId }).IsUnique();
 
         }
