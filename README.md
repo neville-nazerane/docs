@@ -1,4 +1,3 @@
-# docs
 Documentation website on all nugets
 
 ## Testing code locally
