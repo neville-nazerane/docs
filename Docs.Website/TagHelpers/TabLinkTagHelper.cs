@@ -26,7 +26,6 @@ namespace Docs.Website.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "a";
-
             string tabName = currentDocument?.CurrentTab ??
                 ViewContext.RouteData.Values["Action"].ToString();
             string current = Current ?? Action;
@@ -40,6 +39,7 @@ namespace Docs.Website.TagHelpers
                 }
                 output.Attributes.SetAttribute("class", classValue);
             }
+            
 
             base.Process(context, output);
         }

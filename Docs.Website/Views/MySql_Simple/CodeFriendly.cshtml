@@ -119,5 +119,5 @@ using (var users = q.Query());
 <p>Or now you can use it as follows</p>
 
 <csharp>
-    .WhereConditional(cond & (cond2 ! cond3 & Cond4));
+    .WhereConditional(cond & (cond2 | cond3 & Cond4));
 </csharp>

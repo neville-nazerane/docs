@@ -24,7 +24,7 @@
     To directly add options from the <i>IConfiguration</i>, the following overload can be used:
 
     <pre>
-<code class="c#">services.AddAzureBlob(Configuration.GetSection("azureBlob"));</code>
+<code class="c#">services.AddAzureBlob(Configuration.GetSection("azBlob"));</code>
 </pre>
 
     In order for this to work, the secret manager or the relevant store needs to be setup with the 
@@ -40,12 +40,3 @@
 </code></pre>
 
 </p>
-
-<p>
-    Once the startup is setup, the <i>IBlobManager</i> can be accessed via dependency injection.
-    <a href="https://github.com/neville-nazerane/netcore.azure.blob/blob/master/TestWebsite/Controllers/UploadController.cs">This class on github</a>
-    demonstrates the usage of the IBlobManager. The blob manager provides a series of functions to get the client, get a container and 
-    to upload into a container. The <i>AddToContainer</i> function uploads the image to the specified container with a 
-    newly generated filename and then returns the file name. 
-</p>
-
