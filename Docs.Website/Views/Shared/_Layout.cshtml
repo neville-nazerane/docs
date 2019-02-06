@@ -53,12 +53,12 @@
     </nav>
 
     <div class="container">
-
         @if (Document.Package != null)
         {
             <div class="jumbotron">
                 <h1>@Document.Package.Name</h1>
                 <p>@Document.Package.Description</p>
+                <partial name="_Install" model="@Document.Package" />
             </div>
 
             @if (Document.HasTabs)

@@ -6,15 +6,7 @@
     </div>
     <div class="card-body">
         <p class="card-text">@Model.Description</p>
-        <a class="card-link" data-toggle="collapse" href="#cli-@Model.Id">
-            Command line...
-        </a>
-        <div id="cli-@Model.Id" class="collapse">
-            
-            <pre><b>.NET CLI:</b><code class="ps">dotnet new package @Model.Name</code></pre>
-            <pre><b>Package manager:</b><code class="ps">Install-Package @Model.Name</code></pre>
-            <pre><b>Git:</b><code class="ps">@Model.GitClone</code></pre>
-        </div>
+        <partial name="_Install" model="Model" />
     </div>
     <div class="card-footer">
         @if (Model.GitRepo != null)
