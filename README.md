@@ -1,6 +1,6 @@
 Documentation website on all nugets
 
-## Testing code locally
+## Testing locally
 
 1. *Add a connection string*
 Open command line on migration "Docs.Migration"
