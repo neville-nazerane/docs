@@ -1,0 +1,42 @@
+﻿
+<p>
+    This library provides functionalities to help consume an API (especially .NET Core API).
+    It automatically checks the HTTP status response and serializes the respective errors
+    when required. 
+</p>
+
+<p>
+    To begin with you will need an HTTP client. The <i>ApiConsumer</i> a wrapper class around
+    <i>HttpClient</i>.
+</p>
+
+<csharp>
+    var consumer = new ApiConsumer("http://mybaseUrl.com");
+</csharp>
+
+<p>
+    While the above code will create the required consumer, you can also explicitly specify the version
+    of .NET Core API being used. If the version is not specified, by default the <code>consumer</code>
+    will try every known serialization, which would get a lot heavier.
+</p>
+
+<csharp>
+    consumer.ApiVersion = ApiVersion.Version2_2;
+</csharp>
+
+<p>
+    The version mentioned needs to be the highest version that is close to the .NET Core API. If no
+    .NET Core API is being used, <code>ApiVersion.None</code> can be used so serialization is never
+    attempted.
+</p>
+
+<p>
+    The <code>consumer</code> object can contain the default events which would be triggered when HTTP requests 
+    are made using this consumer. The <i>ApiConsumerDefaults</i> class contains events for the various 
+    http response codes expected. 
+    <a href="https://github.com/neville-nazerane/NetCore-Apis/blob/master/NetCore.Apis.Consumer.Test/TestDefaults.cs" target="_blank" >This class</a>
+    displays the various events that can be used. On creating an object of this, class, it can be assigned to <i>consumer.Defaults</i> by
+    using the following:
+</p>
+
+<pre><code class="c#">consumer.Defaults = new TestDefaults();</code></pre>

@@ -61,7 +61,13 @@
     <Content Update="Views\NetCore_Apis_Client_UI\Intro.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\NetCore_Apis_Consumer\Index.cshtml">
+    <Content Update="Views\NetCore_Apis_Consumer\ConsumedResponse.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\NetCore_Apis_Consumer\MakingCalls.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\NetCore_Apis_Consumer\Consumer.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\NetCore_Azure_Blob\TagHelpers.cshtml">
