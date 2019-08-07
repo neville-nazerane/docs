@@ -14,7 +14,7 @@ namespace Docs.Website
     public static class HostExtensions
     {
 
-        const string urlKey = "DOCS_URLS";
+        const string urlKey = "LOCAL_URL";
         const string vaultKey = "KEYVAULT_ENDPOINT";
         const string jsonPath = @"..\secrets\nev_docs.json";
 

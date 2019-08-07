@@ -48,3 +48,12 @@
     updating the code when the API's return type changes.
 </p>
 
+<p>
+    While the above function provides this method for simplicity, there are still direct functions to return <code>ApiConsumedResponse</code>
+    and its generic class.
+</p>
+
+<csharp>
+var res1 = await Consumer.GetBuiltAsync(); // returns a ApiConsumedResponse
+var res2 = await Consumer.GetAsync&lt;TModel>(); // returns ApiConsumedResponse&lt;TModel>
+</csharp>

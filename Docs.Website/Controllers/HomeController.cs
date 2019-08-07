@@ -15,6 +15,8 @@ namespace Docs.Website.Controllers
 
         public HomeController(AppDbContext context) => this.context = context;
 
+        public string Test() => "test page to ensure website loads";
+
         public IActionResult Index() 
                 => View(from p in context.Packages
                         where p.IsDisplayed
