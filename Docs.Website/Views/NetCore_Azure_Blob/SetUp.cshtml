@@ -9,34 +9,40 @@
 <p>
     The account information can be mentioned directly within the startup.
 
-    <pre>
-<code class="c#">services.AddAzureBlob(options => {
+<csharp>
+services.AddAzureBlob(options => {
     options.AccountName = "";
     options.Key = "";
     options.KeyName = "";
+    options.PathPrefix = ""; // optional
 });
-</code></pre>
+</csharp>
 
 </p>
 
+<p>
+    The path prefix provides an option to specify the default path prefix of the blob url. 
+    This is useful if the entire web app uses just one container or path within a container ("&lt;containername>/path").
+    This prefix would be used in the tag helper by default
+</p>
 
 <p>
     To directly add options from the <i>IConfiguration</i>, the following overload can be used:
 
-    <pre>
-<code class="c#">services.AddAzureBlob(Configuration.GetSection("azBlob"));</code>
-</pre>
+<csharp>services.AddAzureBlob(Configuration.GetSection("azBlob"));</csharp>
 
     In order for this to work, the secret manager or the relevant store needs to be setup with the 
     following configuration:
 
-    <pre><code class="json">{
+<json>
+{
     "azBlob": {
         "keyName": "",
         "accountName": "",
-        "key": ""
+        "key": "",
+        "pathPrefix": "" 
     }
 }
-</code></pre>
+</json>
 
 </p>
