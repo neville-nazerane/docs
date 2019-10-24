@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Docs.Website.TagHelpers
 {
-    public class CsharpTagHelper : TagHelper
+    public abstract class CodeTagHelperBase : TagHelper
     {
+        private readonly string lang;
 
+        public CodeTagHelperBase(string lang)
+        {
+            this.lang = lang;
+        }
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
@@ -16,8 +21,8 @@ namespace Docs.Website.TagHelpers
             var c = await output.GetChildContentAsync();
             string content = c.GetContent().Trim();
             output.TagName = "pre";
-            output.Content.SetHtmlContent($"<code class='csharp'>{content}</code>");
+            output.Content.SetHtmlContent($"<code class='{lang}'>{content}</code>");
         }
 
-    } 
+    }
 }
