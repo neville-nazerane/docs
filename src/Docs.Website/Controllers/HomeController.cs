@@ -17,7 +17,7 @@ namespace Docs.Website.Controllers
 
         public string Test() => "test page to ensure website loads";
 
-        public string Sample() => "hello CI CD";
+        public string Sample() => "bye CI CD";
 
         public IActionResult Index() 
                 => View(from p in context.Packages
