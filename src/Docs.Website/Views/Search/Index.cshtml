@@ -10,7 +10,7 @@
     </div>
     <div class="card-body collapse show" id="package-results">
         <div>
-            @foreach (var package in Model.Packages)
+            @await foreach (var package in Model.Packages)
             {
                 <partial name="_PackageDisplay" model="package" />
             }
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="card">
+@*<div class="card">
     <div class="card-header">
         <h3 class="card-title float-left">Gits</h3>
         <a class="float-right" href="#git-results" data-toggle="collapse">Expand/Collapse</a>
@@ -38,4 +38,4 @@
         }
 
     </div>
-</div>
+</div>*@

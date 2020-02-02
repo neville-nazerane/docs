@@ -8,7 +8,7 @@ namespace Docs.Models
     public class SearchResults
     {
 
-        public IEnumerable<Package> Packages { get; set; }
+        public IAsyncEnumerable<Package> Packages { get; set; }
 
         public Dictionary<string, IEnumerable<Package>> GitRepos { get; set; }
 
