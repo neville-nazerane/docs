@@ -36,7 +36,19 @@
                 @Model.Description
                 <partial name="_Install" model="Model" />
             </div>
-            <a class="card-link-mask" href="~/@Model.Name"></a>
+            @if (Model.GitRepo != null)
+            {
+                <a class="btn btn-github" href="@Model.GitUrl">
+                    <i class="fab fa-github"></i>
+                </a>
+            }
+            @if (Model.HasDocumentation)
+            {
+                <a class="btn btn-github" href="~/@Model.Name">
+                    <i class="fas fa-book"></i>
+                </a>
+            }
+            @*<a class="card-link-mask" href="~/@Model.Name"></a>*@
         </div><!--//card-body-->
     </div><!--//card-->
 </div><!--//col-->
