@@ -25,10 +25,10 @@ namespace Docs.Website.Controllers
             ViewBag.q = q;
             return View(new SearchResults
             {
-                Packages = context.Packages.Where(p => p.Name.Contains(q) || p.Tags.Any(t => q.Contains(t.Tag.Title))),
-                GitRepos = context.Packages.Where(p => p.GitRepo.Contains(q))
-                                             .GroupBy(p => p.GitRepo)
-                                             .ToDictionary(g => g.Key, g => g.AsEnumerable())
+                Packages = context.Packages.Where(p => p.Name.Contains(q) || p.Tags.Any(t => q.Contains(t.Tag.Title))).AsAsyncEnumerable(),
+                //GitRepos = context.Packages.Where(p => p.GitRepo.Contains(q))
+                //                             .GroupBy(p => p.GitRepo)
+                //                             .ToDictionary(g => g.Key, g => g.AsEnumerable())
             });
         }
     }
