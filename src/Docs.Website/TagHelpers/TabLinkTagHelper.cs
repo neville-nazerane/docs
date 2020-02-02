@@ -29,7 +29,7 @@ namespace Docs.Website.TagHelpers
             string tabName = currentDocument?.CurrentTab ??
                 ViewContext.RouteData.Values["Action"].ToString();
             string current = Current ?? Action;
-            if (string.Equals(tabName, current, StringComparison.CurrentCultureIgnoreCase))
+            if (tabName.Equals(current, StringComparison.CurrentCultureIgnoreCase))
             {
                 string classValue = "active";
                 if (output.Attributes
