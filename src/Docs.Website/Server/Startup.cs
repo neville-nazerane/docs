@@ -58,6 +58,7 @@ namespace Docs.Website.Server
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAllMyEndpoints();
                 endpoints.MapRazorPages();
                 endpoints.MapFallbackToFile("index.html");
             });
