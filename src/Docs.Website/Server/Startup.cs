@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using Docs.Website.Server.Services;
+using Docs.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Docs.Website.Server
 {
@@ -23,7 +26,12 @@ namespace Docs.Website.Server
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews();
+            services.AddTransient<DocumentationService>();
+
+            services.AddDbContext<AppDbContext>(config => {
+                config.UseSqlServer(Configuration.GetConnectionString("sqlDb"));
+            });
+
             services.AddRazorPages();
         }
 
@@ -51,7 +59,6 @@ namespace Docs.Website.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
         }
