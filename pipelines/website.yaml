@@ -14,9 +14,9 @@ resources:
 extends:
   template: Shared\netcore-ubuntu.yml@templates
   parameters:
-    usePreRelease: true
-    projectPath: src/Docs.Website
-    projectName: Docs.Website
+    usePreRelease: false
+    projectPath: src/Docs.Website/Server
+    projectName: Docs.Website.Server
     destDirectory: /var/www/docs
     port: 5020
 
