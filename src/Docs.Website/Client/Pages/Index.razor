@@ -22,35 +22,42 @@
         <div class="docs-overview py-5">
             <div class="row justify-content-center">
 
-                @foreach (var package in packages)
+                @if (packages is null)
                 {
+                    <div>Loading packages...</div>
+                }
+                else
+                {
+                    @foreach (var package in packages)
+                    {
 
-                    <div class="col-12 col-lg-4 py-3">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">
-                                    <span class="card-title-text">@package.Name</span>
-                                </h5>
-                                <div class="card-text">
-                                    @package.Description
-                                    <partial name="_Install" model="Model" />
-                                </div>
-                                @if (package.GitRepo != null)
-                                {
-                                    <a class="btn btn-github" href="@package.GitUrl">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                }
-                                @if (package.HasDocumentation)
-                                {
-                                    <a class="btn btn-github" href="~/@package.Name">
-                                        <i class="fas fa-book"></i>
-                                    </a>
-                                }
-                                @*<a class="card-link-mask" href="~/@Model.Name"></a>*@
-                            </div><!--//card-body-->
-                        </div><!--//card-->
-                    </div><!--//col-->
+                        <div class="col-12 col-lg-4 py-3">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">
+                                        <span class="card-title-text">@package.Name</span>
+                                    </h5>
+                                    <div class="card-text">
+                                        @package.Description
+                                        <partial name="_Install" model="Model" />
+                                    </div>
+                                    @if (package.GitRepo != null)
+                                    {
+                                        <a class="btn btn-github" href="@package.GitUrl">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                    }
+                                    @if (package.HasDocumentation)
+                                    {
+                                        <a class="btn btn-github" href="~/@package.Name">
+                                            <i class="fas fa-book"></i>
+                                        </a>
+                                    }
+                                    @*<a class="card-link-mask" href="~/@Model.Name"></a>*@
+                                </div><!--//card-body-->
+                            </div><!--//card-->
+                        </div><!--//col-->
+                    }
                 }
 
                 @*@foreach (var package in Model)

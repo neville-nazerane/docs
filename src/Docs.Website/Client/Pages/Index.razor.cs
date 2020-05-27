@@ -14,7 +14,7 @@ namespace Docs.Website.Client.Pages
 
 
 
-        IEnumerable<Package> packages = new Package[] { };
+        IEnumerable<Package> packages = null;
 
 
         protected override async Task OnInitializedAsync()
