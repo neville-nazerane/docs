@@ -1,0 +1,41 @@
+﻿@page "/documentation/NetCore_Azure_Blob"
+
+
+<div class="docs-wrapper">
+    @if (Document.HasTabs)
+    {
+        <div id="docs-sidebar" class="docs-sidebar">
+            <div class="top-search-box d-lg-none p-3">
+                <form class="search-form">
+                    <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+                    <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <nav id="docs-nav" class="docs-nav navbar">
+                <ul class="section-items list-unstyled nav flex-column pb-3">
+                    @foreach (var tab in Document.TabItems)
+                    {
+                        <li class="nav-item">
+                            <tab-link class="nav-link" asp-action="@tab.Action">@tab.Title</tab-link>
+                        </li>
+                    }
+                </ul>
+            </nav><!--//docs-nav-->
+        </div><!--//docs-sidebar-->
+    }
+    <div class="@(Document.HasTabs ? "docs-content" : string.Empty)">
+        <div class="container">
+
+            <div class="jumbotron">
+                <h1>@Document.Package.Name</h1>
+                <p>@Document.Package.Description</p>
+                <partial name="_Install" model="@Document.Package" />
+            </div>
+
+            <div>body</div>
+
+        </div>
+    </div>
+</div><!--//docs-wrapper-->
+
+
