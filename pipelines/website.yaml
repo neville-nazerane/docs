@@ -28,3 +28,4 @@ extends:
       ASPNETCORE_ENVIRONMENT: Production
       connectionStrings__sqlDb: $(Secrets.Db)
     
+

@@ -18,7 +18,7 @@ namespace Docs.Website.Server
         public static void MapAllMyEndpoints(this IEndpointRouteBuilder endpoints)
         {
 
-            endpoints.MapGet("/api/packages", context => 
+            endpoints.MapGet("/api/packages", context =>
                 context.Response.WriteAsync(
                         JsonSerializer.Serialize(context.RequestServices.GetService<DocumentationService>().GetPackagesAsync())));
 
