@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Docs.Website.Client.Documenations
+namespace Docs.Website.Client.Documenations.NetCore_Azure_Blob
 {
     public partial class NetCore_Azure_Blob
     {
