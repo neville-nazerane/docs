@@ -12,7 +12,13 @@ namespace Docs.Website.Client.Documenations.NetCore_Azure_Blob
 
         CurrentDocument Document => new CurrentDocument
         {
-            Package = new Package { }
+            TabItems = new TabItem[] { 
+                new TabItem{ All = "Batman" },
+                new TabItem{ All = "Dead Meat" },
+            },
+            Package = new Package {
+            
+            }
         };
 
         class CurrentDocument
