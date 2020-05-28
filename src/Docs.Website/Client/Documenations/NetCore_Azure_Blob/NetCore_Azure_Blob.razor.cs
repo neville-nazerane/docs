@@ -1,4 +1,5 @@
 ﻿using Docs.Core;
+using Docs.Website.Client.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,46 +22,10 @@ namespace Docs.Website.Client.Documenations.NetCore_Azure_Blob
             }
         };
 
-        class CurrentDocument
-        {
-            public Package Package { get; set; }
-
-            public IEnumerable<TabItem> TabItems { get; set; }
-
-            public string CurrentTab { get; set; }
-
-            public bool HasTabs => TabItems?.Count() > 0;
-
-        }
+    
 
 
-        public class TabItem
-        {
 
-            public TabItem()
-            {
-
-            }
-
-            public TabItem(string all)
-            {
-                All = all;
-            }
-
-            public string Title { get; set; }
-
-            public string Action { get; set; }
-
-            public string All
-            {
-                set
-                {
-                    Action = value;
-                    Title = Regex.Replace(value, "([a-z])([A-Z])", "$1 $2");
-                }
-            }
-
-        }
 
     }
 }
