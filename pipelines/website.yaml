@@ -1,5 +1,10 @@
 trigger:
-  - master
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - src
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -15,8 +20,8 @@ extends:
   template: Shared\netcore-ubuntu.yml@templates
   parameters:
     usePreRelease: false
-    projectPath: src/Docs.Website/Server
-    projectName: Docs.Website.Server
+    projectPath: src/Docs.WebApp
+    projectName: Docs.WebApp
     destDirectory: /var/www/docs
     port: 5020
 
@@ -26,6 +31,5 @@ extends:
       name: kestrel-docs
     configs:
       ASPNETCORE_ENVIRONMENT: Production
-      connectionStrings__sqlDb: $(Secrets.Db)
     
 
