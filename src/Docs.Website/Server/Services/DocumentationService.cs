@@ -20,7 +20,7 @@ namespace Docs.Website.Server.Services
         public async Task<IEnumerable<Package>> GetPackagesAsync()
         {
             return await _context.Packages
-                                .Where(p => p.HasDocumentation && p.IsDisplayed)
+                                //.Where(p => p.HasDocumentation && p.IsDisplayed)
                                 .ToArrayAsync();
         }
 
