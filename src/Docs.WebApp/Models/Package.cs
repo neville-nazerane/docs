@@ -19,7 +19,7 @@ namespace Docs.WebApp.Models
 
         public bool HasDocumentation { get; set; }
 
-        public IEnumerable<PackageTag> Tags { get; set; }
+        public IEnumerable<string> Tags { get; set; }
 
         public string GitUrl => $"https://github.com/neville-nazerane/{GitRepo}";
 

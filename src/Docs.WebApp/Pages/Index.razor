@@ -7,10 +7,12 @@
         <h1 class="page-heading single-col-max mx-auto">Documentation</h1>
         <div class="page-intro single-col-max mx-auto">Everything documented on my nugets...</div>
         <div class="main-search-box pt-3 d-block mx-auto">
-            <form class="search-form w-100" action="~/search" method="get">
-                <input type="text" placeholder="Search the docs..." name="q" class="form-control search-input">
-                <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
-            </form>
+            <div class="search-form w-100">
+                <input type="text" placeholder="Search the docs..." @bind=Query @bind:event="oninput" class="form-control search-input">
+                <button type="submit" class="btn search-btn" value="Search">
+                    <i class="fas fa-search" />
+                </button>
+            </div>
         </div>
     </div>
 </div><!--//page-header-->
@@ -21,13 +23,13 @@
         <div class="docs-overview py-5">
             <div class="row justify-content-center">
 
-                @if (packages is null)
+                @if (displaying is null)
                 {
                     <div>Loading packages...</div>
                 }
                 else
                 {
-                    @foreach (var package in packages)
+                    @foreach (var package in displaying)
                     {
 
                         <div class="col-12 col-lg-4 py-3">
