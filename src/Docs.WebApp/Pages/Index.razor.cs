@@ -15,7 +15,7 @@ namespace Docs.WebApp.Pages
         private string query;
         readonly IEnumerable<Package> packages;
 
-        [CascadingParameter]
+        [CascadingParameter(Name = "routeData")]
         public RouteData Data { get; set; }
 
         string Query
@@ -36,6 +36,8 @@ namespace Docs.WebApp.Pages
 
         void DisplayWithFilter()
         {
+            Console.WriteLine("Showing... " + Data?.PageType?.Name);
+            Console.WriteLine("With... " + string.Join(',', Data?.RouteValues?.Values ?? System.Array.Empty<string>()));
             var result = packages;
 
             if (!string.IsNullOrEmpty(Query))
