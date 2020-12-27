@@ -1,5 +1,6 @@
 ﻿using Docs.WebApp.Models;
 using Docs.WebApp.Services;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace Docs.WebApp.Pages
         IEnumerable<Package> displaying;
         private string query;
         readonly IEnumerable<Package> packages;
+
+        [CascadingParameter]
+        public RouteData Data { get; set; }
 
         string Query
         {
@@ -40,7 +44,7 @@ namespace Docs.WebApp.Pages
                                         || p.Tags?.Any(t => t == Query) == true
                                         || p.GitRepo?.Contains(Query, StringComparison.OrdinalIgnoreCase) == true);
             }
-
+            
             displaying = result.Where(p => p.IsDisplayed);
         }
 
