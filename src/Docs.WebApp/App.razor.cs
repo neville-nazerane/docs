@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Docs.WebApp.Models;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,8 @@ namespace Docs.WebApp
                                 == true;
             }
         }
+
+        DocumentationMeta BuildDocMeta() => new DocumentationMeta();
+    
     }
 }
