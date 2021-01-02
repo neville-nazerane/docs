@@ -19,7 +19,6 @@ namespace Docs.WebApp
             {
 
                 var path = NavigationManager.Uri?.Replace(NavigationManager.BaseUri, string.Empty);
-                Console.WriteLine(path);
                 if (string.IsNullOrEmpty(path))
                     return false;
                 return path
