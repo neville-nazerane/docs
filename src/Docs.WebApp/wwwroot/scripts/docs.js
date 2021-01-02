@@ -37,30 +37,9 @@ $(document).ready(function () {
     /* ====== Activate scrollspy menu ===== */
     $('body').scrollspy({ target: '#docs-nav', offset: 100 });
 
-
-
-    /* ===== Smooth scrolling ====== */
-
-    //console.log(433, $('#docs-sidebar a.scrollto'));
-
-    //$('#docs-sidebar a.scrollto').on('click', function (e) {
-    //    //store hash
-    //    var target = this.hash;
-    //    e.preventDefault();
-    //    console.log(44, target);
-    //    $('body').scrollTo(target, 800, { offset: -69, 'axis': 'y' });
-
-    //    //Collapse sidebar after clicking
-    //    if ($('#docs-sidebar').hasClass('sidebar-visible') && $(window).width() < 1200) {
-    //        $('#docs-sidebar').removeClass('sidebar-visible').addClass('slidebar-hidden');
-    //    }
-
-    //});
-
     /* wmooth scrolling on page load if URL has a hash */
     if (window.location.hash) {
         var urlhash = window.location.hash;
-        console.log(33, urlhash);
         $('body').scrollTo(urlhash, 800, { offset: -69, 'axis': 'y' });
     }
 
@@ -73,17 +52,12 @@ $(document).ready(function () {
         $(this).ekkoLightbox();
     });
 
-
-
-
-});
-
-
-$(document).on('click', '#docs-sidebar a.scrollto', function (e) {
+})
+/* ===== Smooth scrolling ====== */
+    .on('click', '#docs-sidebar a.scrollto', function (e) {
     //store hash
     var target = this.hash;
     e.preventDefault();
-    console.log(44, target);
     $('body').scrollTo(target, 800, { offset: -69, 'axis': 'y' });
 
     //Collapse sidebar after clicking
