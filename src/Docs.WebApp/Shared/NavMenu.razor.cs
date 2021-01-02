@@ -10,10 +10,8 @@ namespace Docs.WebApp.Shared
     public partial class NavMenu
     {
 
-        [Parameter]
+        [CascadingParameter(Name = "metaData")]
         public DocumentationMeta Meta { get; set; }
-
-        public ICollection<MenuItemData> MenuListing { get; set; }
 
         protected override void OnParametersSet()
         {
@@ -25,11 +23,8 @@ namespace Docs.WebApp.Shared
             }
         }
 
-
         void UpdateMenu()
         {
-            MenuListing = Meta.MenuItems;
-            Console.WriteLine(99 + string.Join(",", MenuListing.Select(m => m.Text)));
             StateHasChanged();
         }
 

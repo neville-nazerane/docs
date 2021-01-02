@@ -10,30 +10,13 @@ namespace Docs.WebApp.Shared
     public partial class DocumentationLayout
     {
 
-        DocumentationMeta meta;
-
-        ICollection<MenuItemData> menuListing;
-
-        public EventCallback<MenuItemData> MenuItemAdded { get; set; }
+        readonly DocumentationMeta meta;
 
         public DocumentationLayout()
         {
-            menuListing = new List<MenuItemData>();
-            meta = new DocumentationMeta
-            {
-                //MenuUpdated = UpdateMenu
-            };
-            //UpdateMenu();
+            meta = new DocumentationMeta();
         }
 
-        int count;
-
-        void UpdateMenu()
-        {
-            menuListing = meta.MenuItems;
-            Console.WriteLine(count++ + string.Join(",", menuListing.Select(m => m.Text)));
-            //StateHasChanged();
-        }
 
     }
 }

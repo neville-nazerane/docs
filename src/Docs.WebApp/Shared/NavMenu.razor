@@ -1,10 +1,12 @@
 ﻿
-
-@foreach (var item in MenuListing)
+@if (Meta is not null)
 {
-    <li class="nav-item section-title">
-        <a class="nav-link scrollto active" href="#section-1">
-            <span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>@item.Text
-        </a>
-    </li>
+    @foreach (var item in Meta.MenuItems)
+    {
+        <li class="nav-item section-title">
+            <a class="nav-link scrollto active" href="#section-1">
+                <span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>@item.Text
+            </a>
+        </li>
+    }
 }
