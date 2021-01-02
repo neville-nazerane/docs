@@ -1,5 +1,6 @@
 ﻿using Docs.WebApp.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ namespace Docs.WebApp
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
+
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
 
         bool IsDocumentation
         {
@@ -29,7 +33,11 @@ namespace Docs.WebApp
             }
         }
 
-        DocumentationMeta BuildDocMeta() => new DocumentationMeta();
-    
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            await JSRuntime.InvokeVoidAsync("rendered", firstRender);
+        }
+
     }
 }

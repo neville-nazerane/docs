@@ -37,13 +37,6 @@ $(document).ready(function () {
     /* ====== Activate scrollspy menu ===== */
     $('body').scrollspy({ target: '#docs-nav', offset: 100 });
 
-    /* wmooth scrolling on page load if URL has a hash */
-    if (window.location.hash) {
-        var urlhash = window.location.hash;
-        $('body').scrollTo(urlhash, 800, { offset: -69, 'axis': 'y' });
-    }
-
-
     /* Bootstrap lightbox */
     /* Ref: http://ashleydw.github.io/lightbox/ */
 
@@ -52,12 +45,24 @@ $(document).ready(function () {
         $(this).ekkoLightbox();
     });
 
+    onRendered(function (firstTime) {
+
+        if (firstTime) {
+            /* wmooth scrolling on page load if URL has a hash */
+            if (window.location.hash) {
+                var urlhash = window.location.hash;
+                $('body').scrollTo(urlhash, 800, { offset: -69, 'axis': 'y' });
+            }
+        }
+
+    });
+
 })
 /* ===== Smooth scrolling ====== */
     .on('click', '#docs-sidebar a.scrollto', function (e) {
     //store hash
     var target = this.hash;
-    e.preventDefault();
+    //e.preventDefault();
     $('body').scrollTo(target, 800, { offset: -69, 'axis': 'y' });
 
     //Collapse sidebar after clicking
@@ -65,4 +70,5 @@ $(document).ready(function () {
         $('#docs-sidebar').removeClass('sidebar-visible').addClass('slidebar-hidden');
     }
 
-});
+    });
+

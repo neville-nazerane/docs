@@ -1,11 +1,11 @@
 ﻿
-window.scrollToElementId = (elementId) => {
-    return false;
-    //var element = document.getElementById(elementId);
-    //if (!element) {
-    //    console.warn('element was not found', elementId);
-    //    return false;
-    //}
-    //element.scrollIntoView();
-    //return true;
+var renderEvents = [];
+
+function onRendered(event) {
+    renderEvents.push(event);
 }
+
+window.rendered = (firstTime) => {
+    for (var i in renderEvents)
+        renderEvents[i](firstTime);
+};
