@@ -8,6 +8,8 @@ namespace Docs.WebApp.Models
     public class SubMenuItemsData
     {
 
+        public string Id { get; set; }
+
         public string Text { get; set; }
 
     }

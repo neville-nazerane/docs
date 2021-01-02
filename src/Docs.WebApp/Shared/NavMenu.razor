@@ -4,9 +4,16 @@
     @foreach (var item in Meta.MenuItems)
     {
         <li class="nav-item section-title">
-            <a class="nav-link scrollto active" href="#section-1">
-                <span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>@item.Text
-            </a>
+            <NavLink class="nav-link scrollto" href="@BuildLink(item.Id)">
+                <span class="theme-icon-holder mr-2"><i class="fas @item.Icon"></i></span>@item.Text
+            </NavLink>
         </li>
+
+        @foreach (var subItem in item.SubMenuItems)
+        {
+            <li class="nav-item">
+                <NavLink class="nav-link scrollto" href="@BuildLink(subItem.Id)">@subItem.Text</NavLink>
+            </li>
+        }
     }
 }

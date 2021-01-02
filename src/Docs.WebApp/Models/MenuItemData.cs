@@ -8,6 +8,10 @@ namespace Docs.WebApp.Models
     public class MenuItemData
     {
 
+        public string Id { get; set; }
+
+        public string Icon { get; set; }
+
         public string Text { get; set; }
 
         public ICollection<SubMenuItemsData> SubMenuItems { get; set; }

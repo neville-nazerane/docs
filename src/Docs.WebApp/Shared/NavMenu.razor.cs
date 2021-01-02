@@ -13,6 +13,9 @@ namespace Docs.WebApp.Shared
         [CascadingParameter(Name = "metaData")]
         public DocumentationMeta Meta { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
@@ -22,6 +25,8 @@ namespace Docs.WebApp.Shared
                 UpdateMenu();
             }
         }
+
+        string BuildLink(string id) => $"{NavigationManager.GetPath()}#{id}";
 
         void UpdateMenu()
         {

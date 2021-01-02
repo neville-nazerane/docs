@@ -14,7 +14,13 @@ namespace Docs.WebApp.Components
         public string MenuText { get; set; }
 
         [Parameter]
+        public string Id { get; set; }
+
+        [Parameter]
         public string Title { get; set; }
+
+        [Parameter]
+        public string Icon { get; set; }
 
         [Parameter]
         public RenderFragment Description { get; set; }
@@ -25,7 +31,7 @@ namespace Docs.WebApp.Components
         [CascadingParameter(Name = "metaData")]
         public DocumentationMeta DocumentationMeta { get; set; }
 
-        MenuItemData currentItem;
+        readonly MenuItemData currentItem;
 
         public MainSection()
         {
@@ -34,22 +40,27 @@ namespace Docs.WebApp.Components
 
         protected override void OnParametersSet()
         {
-            if (DocumentationMeta is not null && MenuText is not null)
+            if (DocumentationMeta is not null 
+                && MenuText is not null
+                && Id is not null
+                && Icon is not null)
             {
                 SetMenuText();
             }
             base.OnParametersSet();
         }
 
-        [CascadingParameter(Name = "menu")]
-        public ICollection<MenuItemData> MenuListing { get; set; }
-
         void SetMenuText()
         {
+            if (DocumentationMeta.MenuItems.Any(i => i.Id == Id)) return;
+
+            currentItem.Id = Id;
             currentItem.Text = MenuText;
-            //MenuListing.Add(currentItem);
+            currentItem.Icon = Icon;
+
             DocumentationMeta.MenuItems.Add(currentItem);
             DocumentationMeta.MenuUpdated?.Invoke();
         }
+
     }
 }
