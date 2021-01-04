@@ -39,7 +39,8 @@ namespace Docs.WebApp.Services
                         Name = "NetCore.Jwt",
                         Description = "A simple and straightforward jwt authentication setup",
                         GitRepo = "netcore.jwt",
-                        IsDisplayed = true
+                        IsDisplayed = true,
+                        HasDocumentation = true
                     },
                      new Package {
                         Name = "NetCore.Azure.Blob",
