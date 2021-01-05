@@ -11,9 +11,6 @@ namespace Docs.WebApp.Components
     {
 
         [Parameter]
-        public string MenuText { get; set; }
-
-        [Parameter]
         public string Id { get; set; }
 
         [Parameter]
@@ -35,7 +32,7 @@ namespace Docs.WebApp.Components
 
             if (DocumentationMeta is not null
                 && ParentItem is not null
-                && MenuText is not null
+                && Heading is not null
                 && Id is not null)
                 SetText();
         }
@@ -47,7 +44,7 @@ namespace Docs.WebApp.Components
             ParentItem.SubMenuItems.Add(new SubMenuItemsData 
             { 
                 Id = Id,
-                Text = MenuText
+                Text = Heading
             });
             DocumentationMeta.MenuUpdated?.Invoke();
         }

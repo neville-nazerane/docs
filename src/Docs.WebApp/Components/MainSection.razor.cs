@@ -11,9 +11,6 @@ namespace Docs.WebApp.Components
     {
 
         [Parameter]
-        public string MenuText { get; set; }
-
-        [Parameter]
         public string Id { get; set; }
 
         [Parameter]
@@ -41,7 +38,7 @@ namespace Docs.WebApp.Components
         protected override void OnParametersSet()
         {
             if (DocumentationMeta is not null 
-                && MenuText is not null
+                && Title is not null
                 && Id is not null
                 && Icon is not null)
             {
@@ -55,7 +52,7 @@ namespace Docs.WebApp.Components
             if (DocumentationMeta.MenuItems.Any(i => i.Id == Id)) return;
 
             currentItem.Id = Id;
-            currentItem.Text = MenuText;
+            currentItem.Text = Title;
             currentItem.Icon = Icon;
 
             DocumentationMeta.MenuItems.Add(currentItem);

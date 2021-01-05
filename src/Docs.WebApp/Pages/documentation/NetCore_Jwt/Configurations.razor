@@ -1,0 +1,14 @@
+﻿
+<SubSection Id="config" Heading="Additional Configurations">
+    <p>
+        Additional configuration can be added by adding the required options:
+    </p>
+
+    <CSharp>
+        services.AddAuthentication(NetCoreJwtDefaults.SchemeName).AddNetCoreJwt(o => {
+        o.Audience = "";
+        o.Issuer = "";
+        o.Secret = "customSecret";
+        });
+    </CSharp>
+</SubSection>
