@@ -46,7 +46,8 @@ namespace Docs.WebApp.Services
                         Name = "NetCore.Azure.Blob",
                         Description = "Service for azure blob storage",
                         GitRepo = "netCore.azure.blob",
-                        IsDisplayed = true
+                        IsDisplayed = true,
+                        HasDocumentation = true
                     },
                      new Package {
                         Name = "NetCore.ModelValidation",

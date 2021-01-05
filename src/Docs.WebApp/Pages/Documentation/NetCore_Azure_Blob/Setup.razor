@@ -1,0 +1,55 @@
+﻿<MainSection Title="Setup" Id="setup" Icon="fa-cogs">
+
+    <Description>
+        <p>
+            The <i>NetCore.Azure.Blob</i> package allows you to perform basic uploads to an azure blob storage by
+            avoiding boilerplate codes and by using dependency injections. The setup is as simple as adding the connection
+            configurations into the start up class and injecting the <i>IBlobManager</i>.
+            Adding the service in the startup class, can be done by the following overloads:
+        </p>
+    </Description>
+
+    <Content>
+
+
+        <p>
+            The account information can be mentioned directly within the startup.
+
+            <CSharp>services.AddAzureBlob(options => {
+                options.AccountName = "";
+                options.Key = "";
+                options.KeyName = "";
+                options.PathPrefix = ""; // optional
+                });</CSharp>
+
+        </p>
+
+        <p>
+            The path prefix provides an option to specify the default path prefix of the blob url.
+            This is useful if the entire web app uses just one container or path within a container ("&lt;containername>/path").
+            This prefix would be used in the tag helper by default
+        </p>
+
+        <p>
+            To directly add options from the <i>IConfiguration</i>, the following overload can be used:
+
+            <CSharp>services.AddAzureBlob(Configuration.GetSection("azBlob"));</CSharp>
+
+            In order for this to work, the secret manager or the relevant store needs to be setup with the
+            following configuration:
+
+            <Json>{
+                "azBlob": {
+                "keyName": "",
+                "accountName": "",
+                "key": "",
+                "pathPrefix": ""
+                }
+                }</Json>
+
+        </p>
+
+    </Content>
+
+
+</MainSection>

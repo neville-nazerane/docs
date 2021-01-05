@@ -1,0 +1,46 @@
+﻿<MainSection Title="Accessing Blobs" Id="access" Icon="fa-images">
+
+    <Content>
+
+        <p>
+            Once setup the <code>IBlobManager</code> can be injected into any service. This interface provides direct functions to
+            handle many common tasks of blob storage. Uploading a new image from a view can be as simple as taking the image as an
+            <code>IFormFile</code> and using the <code>AddToContainerAsync</code> function:
+        </p>
+
+        <CSharp>
+            string fname = await blobManager.AddToContainerAsync("containerName", myFormFile);
+        </CSharp>
+
+        <p>
+            The above function uploads the <code>myFormFile</code> file contents to a container with the name "containerName".
+            In order to ensure there is no duplication concerns, the filename is set in the format &lt;GUID>.&lt;extension>.
+            This file name is later returned by the function for reference.
+        </p>
+
+        <p>
+            The container can also be accessed directly from the <code>GetContainer</code> function. This function returns
+            the native <code>CloudBlobContainer</code> object. Any azure blob specific features that are not currently in
+            this library can now be accessed.
+        </p>
+
+        <CSharp>
+            CloudBlobContainer container = blobManager.GetContainer("containerName");
+            // custom codes using the container object
+            container.AddToContainerAsync("containerName", myFormFile);
+        </CSharp>
+
+        <p>
+            In the above code, <code>AddToContainerAsync</code> serves the same functionality of <code>AddToContainerAsync</code>.
+            However, in this case, using <code>AddToContainerAsync</code> would re-create an instance container while
+            <code>AddToContainerAsync</code> reuses the instance.
+        </p>
+
+        <p>
+            Similary, the blob's storage account and blob client can also be fetched using the <code>GetStorageAccount</code>
+            and <code>GetBlobClient</code> functions respectively.
+        </p>
+
+    </Content>
+
+</MainSection>
