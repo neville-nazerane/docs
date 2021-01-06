@@ -33,7 +33,8 @@ namespace Docs.WebApp.Services
                         Name = "NetCore.Angular",
                         Description = "Integration between .net core web applications and angularjs, allowing for strongly typed usage of angular",
                         GitRepo = "netcore.angular",
-                        IsDisplayed = true
+                        IsDisplayed = true,
+                        HasDocumentation = true
                     },
                      new Package {
                         Name = "NetCore.Jwt",

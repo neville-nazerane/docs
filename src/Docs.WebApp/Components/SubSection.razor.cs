@@ -29,12 +29,7 @@ namespace Docs.WebApp.Components
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
-
-            if (DocumentationMeta is not null
-                && ParentItem is not null
-                && Heading is not null
-                && Id is not null)
-                SetText();
+            SetText();
         }
 
         void SetText()

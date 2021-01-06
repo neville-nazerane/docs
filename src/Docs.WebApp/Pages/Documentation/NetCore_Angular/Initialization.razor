@@ -1,0 +1,80 @@
+﻿
+<MainSection Title="Initialize" Id="init">
+
+    <Description>
+        <p>
+            This library closely integrates .NET Core and AngularJS. Thus it needs a setup on the client and server side.
+
+        </p>
+    </Description>
+
+    <Content>
+
+        <SubSection Heading="Adding packages" Id="addingPackages">
+            <p>
+                You can either add both packages with a single command by using the experimental
+                <a target="_blank" href="https://www.nuget.org/packages/Dotnet.Csp/0.5.0-beta">Dotnet.Csp</a> (Client Server Packages) or
+                follow the manual steps.
+            </p>
+
+            <h4>Using CSP:</h4>
+
+            <CSharp>dotnet csp add netcore.angular</CSharp>
+
+            <h4>Manually:</h4>
+
+            <ul>
+                <li>Install the server side nuget <code>NetCore.Angular</code></li>
+                <li>
+                    For the client side, save
+                    <a target="_blank" href="https://raw.githubusercontent.com/neville-nazerane/netcore-angular-bower/master/js/netcore-angular.js">
+                        this js file
+                    </a> into your wwwroot (preferablly into the lib folder).
+                </li>
+            </ul>
+
+        </SubSection>
+
+        
+        <SubSection Heading="Server-side setup" Id="serverSide">
+
+            <ol>
+                <li>
+                    <p>Add angular service in startup.cs with:</p>
+                    <CSharp>services.AddNetCoreAngular()</CSharp>
+                </li>
+                <li>
+                    <p>Add tag helpers by adding the following line at the bottom of ViewImports.cshtml:</p>
+                    <CSharp>@@addTagHelper *, NetCore.Angular</CSharp>
+                </li>
+                <li>
+                    <p>Add generated scripts using at the end of the razor page (layout page or every page) using:</p>
+                    <CSharp>&lt;script-angular>&lt;/script-angular></CSharp>
+                </li>
+            </ol>
+
+            <h3>Client-side setup</h3>
+
+            <ol>
+                <li>Set up AngularJS on your web application with the default requirements</li>
+                <li>
+                    <p>
+                        Include the netcore-angular.js script file your views (preferably the _Layout.cshtml).
+                        If you used dotnet csp, you can use the following import:
+                    </p>
+                    <CSharp>
+                        &lt;script src="~/lib/netcore.angular/js/netcore-angular.js">&lt;/script>
+                    </CSharp>
+                </li>
+                <li>
+                    In your angular module js file, include <code>netcore-angular</code>
+                </li>
+            </ol>
+
+        </SubSection>
+
+
+
+    </Content>
+
+</MainSection>

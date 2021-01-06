@@ -35,15 +35,12 @@ namespace Docs.WebApp.Components
             currentItem = new MenuItemData();
         }
 
+        Guid stuff = Guid.NewGuid();
+
         protected override void OnParametersSet()
         {
-            if (DocumentationMeta is not null 
-                && Title is not null
-                && Id is not null
-                && Icon is not null)
-            {
-                SetMenuText();
-            }
+            if (Icon is null) Icon = "fa-file-alt";
+            SetMenuText();
             base.OnParametersSet();
         }
 
