@@ -30,7 +30,7 @@ namespace Docs.WebApp.Pages
 
         public Index()
         {
-            packages = PackageRepository.GetAll();
+            packages = PackageRepository.All;
             DisplayWithFilter();
         }
 

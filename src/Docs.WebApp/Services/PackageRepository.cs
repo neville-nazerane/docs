@@ -9,8 +9,10 @@ namespace Docs.WebApp.Services
     public static class PackageRepository
     {
 
-        public static IEnumerable<Package> GetAll()
-            => new Package[] {
+        static IEnumerable<Package> all;
+
+        public static IEnumerable<Package> All
+            => all ??= new Package[] {
                      new Package {
                         Name = "NetCore.Apis.Consumer",
                         Description = "Helper to consume rest API set up on .net core.",
@@ -60,7 +62,8 @@ namespace Docs.WebApp.Services
                         Name = "NetCore.ModelValidation.Core",
                         Description = "Core functionality to handle model validation. Allows you to add and list errors mapped to objects and its fields",
                         GitRepo = "NetCore-ModelValidation",
-                        IsDisplayed = true
+                        IsDisplayed = true,
+                        HasDocumentation = true
                     },
                      new Package {
                         Name = "Apps.DependencyInjection ",
