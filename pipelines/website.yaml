@@ -6,8 +6,7 @@ trigger:
     include:
       - src
 
-pool:
-  vmImage: 'ubuntu-latest'
+pool: hosted-linux
 
 resources:
   repositories:
