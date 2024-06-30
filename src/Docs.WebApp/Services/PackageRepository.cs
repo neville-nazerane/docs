@@ -18,7 +18,9 @@ namespace Docs.WebApp.Services
                         Description = "Utility for code generation using console apps",
                         GitRepo = "Code-Generators",
                         IsDisplayed = true,
-                        HasDocumentation = false,
+#if DEBUG
+                        HasDocumentation = true,
+#endif
                     },
                      new() {
                         Name = "NetCore.Apis.Consumer",

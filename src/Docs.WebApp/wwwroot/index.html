@@ -13,6 +13,8 @@
     <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">-->
     <!--<link href="css/highlight/vs.min.css" rel="stylesheet" />-->
     <link href="css/highlight/vs2015.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" />
     <link href="../css/theme.css" rel="stylesheet" />
     <!--<link href="css/site.min.css" rel="stylesheet" />-->
     <link href="css/app.css" rel="stylesheet" />
@@ -40,11 +42,17 @@
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/highlight.min.js"></script>
     <!--<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js"></script>-->
-    <script>hljs.highlightAll();</script>
+    <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+
     <script src="scripts/jquery/jquery.scrollTo.min.js"></script>
     <script src="scripts/ekko-lightbox.min.js"></script>
     <script src="scripts/site.js"></script>
     <script src="scripts/docs.js"></script>
+
+    <script>
+        startup();
+    </script>
+
 </body>
 
 </html>

@@ -10,9 +10,25 @@ namespace Docs.WebApp
 {
     public partial class App
     {
+        private NavigationManager _navigationManager;
 
         [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        public NavigationManager NavigationManager
+        {
+            get => _navigationManager; 
+            set
+            {
+                if (_navigationManager is not null)
+                    value.LocationChanged -= LocationChanged;
+                _navigationManager = value;
+                value.LocationChanged += LocationChanged;
+            }
+        }
+
+        private async void LocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+        {
+            await JSRuntime.InvokeVoidAsync("startup");
+        }
 
         [Inject]
         public IJSRuntime JSRuntime { get; set; }

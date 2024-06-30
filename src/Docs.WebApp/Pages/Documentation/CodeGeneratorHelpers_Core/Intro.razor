@@ -5,10 +5,30 @@
 
         <p>
 
-            The nuget package <NugetLink Name="CodeGeneratorHelpers.Core" /> provides helper functions to aid with code generation.
-            It includes utilities to extract metadata (such as classes and interfaces) from C# files and write into files.
-
+            The nuget package <NugetLink Name="CodeGeneratorHelpers.Core" /> provides helper functions to aid with code generation using a console app.
         </p>
+
+        <h2>Quick Sample:</h2>
+
+        <p>
+            Let's consider you have the target project named <b>MyProject</b> and would like to create a console app named <b>MyCodeGeneration</b> for code generation.
+            You can use the following CLI commands to setup the new console app:
+        </p>
+
+        <CodeBlock>
+dotnet new console -o MyCodeGeneration
+cd MyCodeGeneration
+dotnet add package CodeGeneratorHelpers.Core
+        </CodeBlock>
+
+        <p>In your console app you can use the following:</p>
+
+        <CSharp>
+var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
+await generator.ExecuteOnEachFileAsync(execution: meta =>
+generator.WriteAllTextToFileAsync($"{meta.SourceFilePath}.txt", $"Found {meta.Classes?.Count() ?? 0} classes"));
+        </CSharp>
+
 
     </Description>
 
