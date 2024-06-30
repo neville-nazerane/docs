@@ -58,24 +58,24 @@ stages:
 
                 - checkout: none
 
-                - script: ls
+                # - script: ls
 
-                # - download: current
-                #   displayName: download published artifact
-                #   artifact: published
+                - download: current
+                  displayName: download published artifact
+                  artifact: published
 
-                # - script: |
-                #     sudo rm -rf $(deploymentDestDirectory)
-                #     mkdir -p $(deploymentDestDirectory)
-                #     tar -xzf src/$(projectName).tar.gz -C $(deploymentDestDirectory)
+                - script: |
+                    sudo rm -rf $(deploymentDestDirectory)
+                    mkdir -p $(deploymentDestDirectory)
+                    tar -xzf src/$(projectName).tar.gz -C $(deploymentDestDirectory)
 
-                #     rm -rf *
-                #   displayName: Unzipping website into destination folder
-                #   workingDirectory: $(Pipeline.Workspace)/published
+                    rm -rf *
+                  displayName: Unzipping website into destination folder
+                  workingDirectory: $(Pipeline.Workspace)/published
 
       
-                # - task: DeleteFiles@1
-                #   displayName: Clean up
+                - task: DeleteFiles@1
+                  displayName: Clean up
                               
 
 # resources:
