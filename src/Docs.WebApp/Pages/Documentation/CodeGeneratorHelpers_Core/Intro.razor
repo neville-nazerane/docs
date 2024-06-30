@@ -4,8 +4,17 @@
     <Description>
 
         <p>
-
             The nuget package <NugetLink Name="CodeGeneratorHelpers.Core" /> provides helper functions to aid with code generation using a console app.
+            These functions primary provide the following functionalities:
+
+            <ul>
+
+                <li>
+                    <strong>Project Tracking:</strong>
+                    
+                </li>
+
+            </ul>
         </p>
 
         <h2>Quick Sample:</h2>
@@ -25,8 +34,8 @@ dotnet add package CodeGeneratorHelpers.Core
 
         <CSharp>
 var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
-await generator.ExecuteOnEachFileAsync(execution: meta =>
-generator.WriteAllTextToFileAsync($"{meta.SourceFilePath}.txt", $"Found {meta.Classes?.Count() ?? 0} classes"));
+await generator.ExecuteOnEachFileAsync(execution: meta 
+        => generator.WriteAllTextToFileAsync($"{meta.SourceFilePath}.txt", $"Found {meta.Classes?.Count() ?? 0} classes"));
         </CSharp>
 
 

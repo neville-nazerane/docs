@@ -15,7 +15,8 @@ window.fixCodePadding = id => {
     setTimeout(() => {
         var e = document.getElementById(id);
         if (!e) return;
-        e.innerHTML = e.innerHTML.trim();
+        e.innerHTML = e.innerHTML.replace(/^\s+|\s+$/g, '');
+
     }, 200);
 }
 
