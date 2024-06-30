@@ -45,12 +45,12 @@ stages:
     displayName: Deploy to the PI
 
     jobs:
-      - deployment: DeployLAN
+      - deployment: Deploy
         displayName: Deploy to Development VM
         environment:
-          name: SmartHome Hub
+          name: Development
           resourceType: VirtualMachine
-          resourceName: ubuntu
+          resourceName: websites
         strategy:
           runOnce:
             deploy:
