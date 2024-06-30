@@ -25,7 +25,8 @@ stages:
 
       - script: |
           dotnet publish $(projectPath) -c release -o published
-          tar -czf compressed/$(projectPath).tar.gz -C published .
+          mkdir -p compressed
+          tar -czf compressed/$(projectName).tar.gz -C published .
         displayName: Publishing Website
 
       # - task: ArchiveFiles@2
