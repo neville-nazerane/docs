@@ -42,7 +42,7 @@ stages:
         artifact: published
 
   - stage: CD
-    displayName: Deploy to the PI
+    displayName: Deploy to the VM
 
     jobs:
       - deployment: Deploy
