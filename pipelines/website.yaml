@@ -67,11 +67,12 @@ stages:
                 - script: |
                     sudo rm -rf $(deploymentDestDirectory)
                     sudo mkdir -p $(deploymentDestDirectory)
-                    sudo tar -xzf src/$(projectName).tar.gz -C $(deploymentDestDirectory)
+                    sudo tar -xzf $(projectName).tar.gz -C $(deploymentDestDirectory)
 
                     rm -rf *
                   displayName: Unzipping website into destination folder
                   workingDirectory: $(Pipeline.Workspace)/published
+                  failOnStderr: true
 
       
                 - task: DeleteFiles@1
