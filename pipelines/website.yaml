@@ -66,8 +66,8 @@ stages:
 
                 - script: |
                     sudo rm -rf $(deploymentDestDirectory)
-                    mkdir -p $(deploymentDestDirectory)
-                    tar -xzf src/$(projectName).tar.gz -C $(deploymentDestDirectory)
+                    sudo mkdir -p $(deploymentDestDirectory)
+                    sudo tar -xzf src/$(projectName).tar.gz -C $(deploymentDestDirectory)
 
                     rm -rf *
                   displayName: Unzipping website into destination folder
