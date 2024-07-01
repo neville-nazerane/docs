@@ -18,7 +18,7 @@ namespace Docs.WebApp.Models
 
         public MenuItemData()
         {
-            SubMenuItems = new List<SubMenuItemsData>();
+            SubMenuItems = [];
         }
 
     }
