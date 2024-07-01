@@ -19,17 +19,17 @@
         </p>
 
         <CodeBlock>
-            dotnet new console -o MyCodeGeneration
-            cd MyCodeGeneration
-            dotnet add package CodeGeneratorHelpers.Core
+dotnet new console -o MyCodeGeneration
+cd MyCodeGeneration
+dotnet add package CodeGeneratorHelpers.Core
         </CodeBlock>
 
         <p>In your console app you can use the following:</p>
 
         <CSharp>
-            var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
-            await generator.ExecuteOnEachFileAsync(execution: meta
-            => generator.WriteAllTextToFileAsync($"{meta.SourceFilePath}.txt", $"Found {meta.Classes?.Count() ?? 0} classes"));
+var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
+await generator.ExecuteOnEachFileAsync(execution: meta
+    => generator.WriteAllTextToFileAsync($"{meta.SourceFilePath}.txt", $"Found {meta.Classes?.Count() ?? 0} classes"));
         </CSharp>
 
 
@@ -66,8 +66,29 @@
 
         </SubSection>
 
-        <SubSection Id="vsSourceGen" Heading="Source Generator Comparision">
+        <SubSection Id="vsSourceGen" Heading="Source Generator Comparison">
 
+            <p>
+                <a href="https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview" target="_blank">.NET source generators</a> 
+                is a powerful tool that is natively supported by .NET. It has been used to create several great libraries such as 
+                <a href="https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui">MAUI Community Toolkit</a>.
+                While source generators can be an efficient solution for such libraries, they might not always be ideal for personal projects.
+            </p>
+
+            <h3>Why use CodeGeneratorHelpers over .NET source generators?</h3>
+            <ul>
+                <li>
+                    <strong>Stable workflow:</strong>
+                    Source generators often have hurdles, such as requiring Visual Studio restarts during development. 
+                    This can be a hindrance for personal projects as it disrupts the workflow
+                </li>
+                <li>
+                    <strong>Using latest .NET:</strong>
+                    Source generators need to run from a NetStandard 2.0 project. 
+                    On the other hand, the console apps that use CodeGeneratorHelpers are built on .NET 8 since they don't have to directly reference the target project
+                    This allows your code generators to leverage the latest C# features.
+                </li>
+            </ul>
 
         </SubSection>
 
