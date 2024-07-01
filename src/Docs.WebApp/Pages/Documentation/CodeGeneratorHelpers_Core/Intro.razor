@@ -1,33 +1,15 @@
 ﻿
 <MainSection Title="Introduction" Id="intro" Icon="fa-info">
 
+
     <Description>
 
         <p>
             The nuget package <NugetLink Name="CodeGeneratorHelpers.Core" /> provides helper functions to aid with code generation using a console app.
             These functions primary provide the following functionalities:
-
-            <ul>
-
-                <li>
-                    <strong>Finding project location:</strong>
-                    Getting the target project's path relative to the executing console app can be tricky, as the execution path varies based on how we execute the console app. 
-                    Hence, this library simplifies accessing the target project's location.
-                </li>
-
-                <li>
-                    <strong>Reading C# Code:</strong>
-                    You can fetch detailed information on the code in each C# file. 
-                    This includes all classes, interfaces, properties, fields, and other elements within each file.
-                </li>
-
-                <li>
-                    <strong>Parallel Processing:</strong>
-                    This library provides multiple ways to read and write files in parallel, making the process time-efficient.
-                </li>
-
-            </ul>
         </p>
+
+
 
         <h2>Quick Sample:</h2>
 
@@ -37,21 +19,60 @@
         </p>
 
         <CodeBlock>
-dotnet new console -o MyCodeGeneration
-cd MyCodeGeneration
-dotnet add package CodeGeneratorHelpers.Core
+            dotnet new console -o MyCodeGeneration
+            cd MyCodeGeneration
+            dotnet add package CodeGeneratorHelpers.Core
         </CodeBlock>
 
         <p>In your console app you can use the following:</p>
 
         <CSharp>
-var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
-await generator.ExecuteOnEachFileAsync(execution: meta 
-        => generator.WriteAllTextToFileAsync($"{meta.SourceFilePath}.txt", $"Found {meta.Classes?.Count() ?? 0} classes"));
+            var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
+            await generator.ExecuteOnEachFileAsync(execution: meta
+            => generator.WriteAllTextToFileAsync($"{meta.SourceFilePath}.txt", $"Found {meta.Classes?.Count() ?? 0} classes"));
         </CSharp>
 
 
     </Description>
+
+    <Content>
+
+        <SubSection Id="features" Heading="Features">
+
+            <p>
+
+                <ul>
+
+                    <li>
+                        <strong>Finding project location:</strong>
+                        Getting the target project's path relative to the executing console app can be tricky, as the execution path varies based on how we execute the console app.
+                        Hence, this library simplifies accessing the target project's location.
+                    </li>
+
+                    <li>
+                        <strong>Reading C# Code:</strong>
+                        You can fetch detailed information on the code in each C# file.
+                        This includes all classes, interfaces, properties, fields, and other elements within each file.
+                    </li>
+
+                    <li>
+                        <strong>Parallel Processing:</strong>
+                        This library provides multiple ways to read and write files in parallel, making the process time-efficient.
+                    </li>
+
+                </ul>
+
+            </p>
+
+        </SubSection>
+
+        <SubSection Id="vsSourceGen" Heading="Source Generator Comparision">
+
+
+        </SubSection>
+
+    </Content>
+
 
 </MainSection>
 
