@@ -124,6 +124,49 @@
 
         </SubSection>
 
+        <SubSection Id="generatorBasics" Heading="CodeGenerator Basics">
+
+            Once you have a CodeGenerator object, you would have access to the following properties. 
+            However, since the read and write functions internally use them, in most cases you might not need these.
+
+            <ul>
+
+                <li>
+                    <strong>FullAppTargetPath</strong>
+                    The absolute path to your target C# folder. This is derived based on the provided <code>targetAppPath</code>
+                </li>
+
+                <li>
+                    <strong>FullGenerationDestinationPath</strong>
+                    The full generation path. This is a combination of the <code>FullAppTargetPath</code> and <code>generationDestinationPath</code>
+                </li>
+
+            </ul>
+
+            <h3>Basic functions</h3>
+
+            <p>
+                Below are some simple functions for basic functionalities. These functions infer you want aim to read and right inside the 
+                <code>FullAppTargetPath</code>. Hence, <code>filePath</code> is meant to be the path inside the <code>FullAppTargetPath</code>.
+            </p>
+
+            <ul>
+
+                <li>
+                    <code>ReadTextInFileAsync(string filePath)</code>
+                    Reads all text in the specific path and returns a raw string.
+                    If you would like to reach C# code, you can use one of the function in the following section instead.
+                </li>
+
+                <li>
+                    <code>WriteAllTextToFileAsync(string filePath, string rawText)</code>
+                    You'll never guess what this one does.
+                </li>
+
+            </ul>
+
+        </SubSection>
+
 
 @*         <CSharp>
 var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
