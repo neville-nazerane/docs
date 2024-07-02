@@ -1,0 +1,47 @@
+﻿
+<MainSection Id="gettingStarted" Title="Getting Started">
+
+    <Content>
+        <p>
+            Let's say you have the target project named <b>MyProject</b> and would like to create a console app named <b>MyCodeGeneration</b> for code generation.
+            You can use the following CLI commands to setup the new console app:
+        </p>
+
+        <CodeBlock>
+dotnet new console -o MyCodeGeneration
+cd MyCodeGeneration
+dotnet add package CodeGeneratorHelpers.Core
+        </CodeBlock>
+
+        <p>
+            If you want the code generation to run automatically when <b>MyProject</b> compiles, you can include the following code 
+            in MyProject.csproj 
+        </p>
+
+        <CodeBlock CodeClass="xml">
+&lt;Target Name=&quot;RunCodeGenerator&quot; BeforeTargets=&quot;CoreCompile&quot;&gt;
+    &lt;Exec Command=&quot;dotnet run --project ../MyCodeGeneration&quot; /&gt;
+&lt;/Target&gt;
+        </CodeBlock>
+
+
+        <p>
+            In the <b>MyCodeGeneration</b> console app, you can now include the following code in Program.cs to create a generator.
+        </p>
+
+        <CSharp>
+var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
+        </CSharp>
+
+@*         <CSharp>
+var generator = CodeGenerator.Create("CodeGeneratorHelpers.Core")
+await generator.ExecuteOnEachFileAsync(execution: meta
+    => generator.WriteAllTextToFileAsync($"{meta.SourceFilePath}.txt", $"Found {meta.Classes?.Count() ?? 0} classes"));
+        </CSharp> *@
+
+
+
+    </Content>
+
+
+</MainSection>
