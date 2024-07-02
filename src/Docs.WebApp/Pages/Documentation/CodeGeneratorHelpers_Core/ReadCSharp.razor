@@ -1,0 +1,25 @@
+﻿
+<MainSection Id="readCSharp" Title="Reading C# Code">
+
+    <Description>
+
+        <p>
+            The library gives multiple ways to read c# file(s) as <code>CodeMetadata</code> objects.
+            The <code>CodeMetadata</code> includes several pieces of information of the c# code including
+            the <code>SourceFilePath</code>, classes, interfaces, nested classes, properties and fields.
+
+        </p>
+
+        <h3>Sample code:</h3>
+        
+        <CSharp>
+CodeMetadata metadata = await generator.GetFileMetadataAsync("MyFile.cs");
+var allProperties = metadata.Classes.SelectMany(c => c.Properties);
+        </CSharp>
+
+        The <code>GetFileMetadataAsync</code> shown above is a basic function to get the metadata from a single file. 
+        For reading multiple files in parallel for optimal speed, you can use the functions below.
+
+    </Description>
+
+</MainSection>
