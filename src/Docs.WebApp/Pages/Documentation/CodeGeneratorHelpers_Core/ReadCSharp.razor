@@ -1,0 +1,133 @@
+﻿
+<MainSection Id="readCSharp" Title="Reading C# Code">
+
+    <Description>
+
+        <p>
+            The library gives multiple ways to read c# file(s) as <code>CodeMetadata</code> objects.
+            The <code>CodeMetadata</code> includes several pieces of information of the c# code including
+            the <code>SourceFilePath</code>, classes, interfaces, nested classes, properties and fields.
+
+        </p>
+
+        <h3>Sample code:</h3>
+        
+        <CSharp>
+CodeMetadata metadata = await generator.GetFileMetadataAsync("MyFile.cs");
+var allProperties = metadata.Classes.SelectMany(c => c.Properties);
+        </CSharp>
+
+        The <code>GetFileMetadataAsync</code> shown above is a basic function to get the metadata from a single file. 
+        For reading multiple files in parallel for optimal speed, you can use the functions below.
+
+    </Description>
+
+    <Content>
+
+        <SubSection Id="ExecuteOnEachFile" Heading="ExecuteOnEachFileAsync">
+            
+            <p>
+                The <code>ExecuteOnEachFileAsync</code> function executes a provided delegate against multiple files in parallel.
+                While this function provides a simplified way to read files and run executions in parallel, it wouldn't serve all use cases.
+                For instance, if you need to a single file based on the contents from multiple files, one of the functions below might be cleaner.
+            </p>
+
+            <CSharp>
+await generator.ExecuteOnEachFileAsync(ExecuteOnEachAsync);
+
+async Task ExecuteOnEachAsync(CodeMetadata meta)
+{
+    if (meta.SourceFilePath.EndsWith("Model.cs"))
+    {
+        var property = meta.Classes.SelectMany(c => c.Properties).First();
+
+        var code = $@@"
+public class Extended{meta.Classes.First().Name}
+{{
+    public {property.Type.Name} {property.Name} {{ get; set; }}
+}}";
+
+        await generator.WriteAllTextToFileAsync($"Extended{meta.SourceFilePath}.cs", code);
+
+    }
+}
+            </CSharp>
+            
+        </SubSection>
+
+        <SubSection Id="GetAllFilesMetadataInBatches" Heading="Get Files Metadata in Batches">
+
+            <p>
+                The function <code>GetAllFilesMetadataInBatches</code> reads batches of files in parallel and returns the batches as they are read.
+                The fact that it returns IAsyncEnumerable of file batches gives a balance between speed and memory optimization.
+            </p>
+
+            <CSharp>
+                
+var batches = generator.GetAllFilesMetadataInBatchesAsync();
+var allInterfaceNames = new ConcurrentBag&lt;string&gt;();
+
+await foreach (var batch in batches)
+{
+    // Get interface names of all files in batch
+    var names = batch.SelectMany(b => b.Interfaces)
+                     .Select(b => b.Name)
+                     .ToImmutableArray();
+
+    // add all names to a concurrent bag
+    // this way you ensure only the relevant data stays in memory
+    foreach (var name in names)
+        allInterfaceNames.Add(name);
+}
+            </CSharp>
+
+        </SubSection>
+
+        
+        <SubSection Id="GetAllFilesMetadataAsAsyncEnumerable" Heading="Files as IAsyncEnumerable">
+
+            <p>
+                The <code>GetAllFilesMetadataAsAsyncEnumerable</code> function returns the code metadata of each file as they are read.
+                This could be RAM efficient since you get to read each file's contents and only retain the relevant data.
+                It can also result in cleaner code and easier usage as compared to the previous function. However, it would also be slower
+                since it reads one file at a time.
+            </p>
+
+
+            <CSharp>
+                var files = generator.GetAllFilesMetadataAsAsyncEnumerable();
+                await foreach (var file in files)
+                {
+                    var names = file.Interfaces
+                    .Select(b => b.Name)
+                    .ToImmutableArray();
+
+                    foreach (var name in names)
+                    allInterfaceNames.Add(name);
+                }
+            </CSharp>
+
+        </SubSection>
+
+        <SubSection Id="GetAllFilesMetadataAsync" Heading="Get Files Metadata">
+
+            <p>
+                The <code>GetAllFilesMetadataAsync</code> function data files all in one IEnumerable. This makes it easiest to code against. 
+                However, it is also the heaviest on RAM since loads data of all selected files into memory.
+            </p>
+
+
+            <CSharp>
+var files2 = await generator.GetAllFilesMetadataAsync();
+
+var names2 = files2.SelectMany(e => e.Enums)
+                   .Select(b => b.Name)
+                   .ToImmutableArray();
+            </CSharp>
+
+        </SubSection>
+
+
+    </Content>
+
+</MainSection>
