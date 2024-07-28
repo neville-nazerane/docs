@@ -16,6 +16,23 @@
 
         </SubSection>
 
+        <SubSection Id="clientCreation" Heading="Creating a client">
+
+<CSharp>
+    HttpClient httpClient = new();
+    IPublicBlobClient client = new PublicBlobClient(httpClient);
+</CSharp>
+
+            <p>
+                OR if using a .NET web app:
+            </p>
+
+<CSharp>
+    services.AddHttpClient&lt;IPublicBlobClient, PublicBlobClient&gt;();
+</CSharp>
+
+        </SubSection>
+
     </Content>
 
 </MainSection>
