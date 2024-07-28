@@ -39,7 +39,7 @@ namespace Docs.WebApp.Components
 
         protected override void OnParametersSet()
         {
-            if (Icon is null) Icon = "fa-file-alt";
+            Icon ??= "fa-file-alt";
             SetMenuText();
             base.OnParametersSet();
         }
