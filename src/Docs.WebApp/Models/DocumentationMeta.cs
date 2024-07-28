@@ -13,7 +13,7 @@ namespace Docs.WebApp.Models
 
         public DocumentationMeta()
         {
-            MenuItems = new List<MenuItemData>();
+            MenuItems = [];
         }
 
     }

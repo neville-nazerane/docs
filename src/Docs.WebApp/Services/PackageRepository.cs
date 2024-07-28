@@ -14,6 +14,13 @@ namespace Docs.WebApp.Services
         public static IEnumerable<Package> All
             => all ??= [
                     new(){
+                        Name = "AzurePublicBlobs",
+                        Description = "Utility for public azure blob containers",
+                        GitRepo = "AzurePublicBlobs",
+                        IsDisplayed = true,
+                        HasDocumentation = true,
+                    },
+                    new(){
                         Name = "CodeGeneratorHelpers.Core",
                         Description = "Utility for code generation using console apps",
                         GitRepo = "Code-Generators",
