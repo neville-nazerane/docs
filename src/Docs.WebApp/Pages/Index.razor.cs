@@ -3,6 +3,7 @@ using Docs.WebApp.Services;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -45,7 +46,7 @@ namespace Docs.WebApp.Pages
                                         || p.GitRepo?.Contains(Query, StringComparison.OrdinalIgnoreCase) == true);
             }
             
-            displaying = result.Where(p => p.IsDisplayed);
+            displaying = result.Where(p => p.IsDisplayed).ToImmutableArray();
         }
 
     }

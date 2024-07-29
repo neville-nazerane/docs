@@ -1,0 +1,40 @@
+﻿
+<MainSection Heading="Setup" Id="setup" Icon="fa-cog">
+
+    <Description>
+        Utility for api calls to public azure blob containers.
+        Intended to be used by C# client side apps such as maui or blazor apps.
+    </Description>
+
+    <Content>
+
+        <SubSection Id="installation" Heading="Installation">
+
+<CodeBlock CodeClass="bash">
+    dotnet add package AzurePublicBlobs
+</CodeBlock>
+
+        </SubSection>
+
+        <SubSection Id="clientCreation" Heading="Creating a client">
+
+<CSharp>
+HttpClient httpClient = new();
+IPublicBlobClient client = new PublicBlobClient(httpClient);
+</CSharp>
+
+            <p>
+                OR if using a .NET web app:
+            </p>
+
+<CSharp>
+    services.AddHttpClient&lt;IPublicBlobClient, PublicBlobClient&gt;();
+</CSharp>
+
+        </SubSection>
+
+    </Content>
+
+</MainSection>
+
+

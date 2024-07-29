@@ -14,7 +14,7 @@ namespace Docs.WebApp.Components
         public string Id { get; set; }
 
         [Parameter]
-        public string Title { get; set; }
+        public string Heading { get; set; }
 
         [Parameter]
         public string Icon { get; set; }
@@ -39,7 +39,7 @@ namespace Docs.WebApp.Components
 
         protected override void OnParametersSet()
         {
-            if (Icon is null) Icon = "fa-file-alt";
+            Icon ??= "fa-file-alt";
             SetMenuText();
             base.OnParametersSet();
         }
@@ -49,7 +49,7 @@ namespace Docs.WebApp.Components
             if (DocumentationMeta.MenuItems.Any(i => i.Id == Id)) return;
 
             currentItem.Id = Id;
-            currentItem.Text = Title;
+            currentItem.Text = Heading;
             currentItem.Icon = Icon;
 
             DocumentationMeta.MenuItems.Add(currentItem);

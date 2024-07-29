@@ -1,0 +1,25 @@
+﻿
+<MainSection Heading="Iterating through blobs" Id="iterating" Icon="fa-list-ul">
+
+    <Description>
+        <p>
+            All blobs can be accessed using the <code>PublicBlobClient</code> instance.
+        </p>
+    </Description>
+
+    <Content>
+
+<CSharp>
+var blobItems = await client.GetContainerContentsAsync("http://fullblockUrl.com/path/containerName");
+
+foreach (var item in blobItems.Blobs)
+{
+    Console.WriteLine(item.Name);
+    Console.WriteLine(item.Url);
+    Console.WriteLine(item.Properties?.LastModified);
+}
+</CSharp>
+
+    </Content>
+
+</MainSection>

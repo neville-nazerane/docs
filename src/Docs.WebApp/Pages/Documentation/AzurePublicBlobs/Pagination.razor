@@ -1,0 +1,29 @@
+﻿
+<MainSection Heading="Pagination" Id="pagination" Icon="fa-file">
+
+    <Description>
+        Instead of loading all blobs into memory, the data can be accessed in batches with pagination
+    </Description>
+
+    <Content>
+
+        <p>Here is a sample to access the top 10 results from the container</p>
+
+<CSharp>
+var page1 = await client.GetContainerContentsAsync("http://fullblockUrl.com/path/containerName",
+                                                   maxResults: 10);
+</CSharp>
+
+        <p>
+            The <code>page1.NextMarker</code> can be used to access the next page
+        </p>
+
+<CSharp>
+var page2 = await client.GetContainerContentsAsync("http://fullblockUrl.com/path/containerName",
+                                                    maxResults: 10,
+                                                    marker: page1.NextMarker);
+</CSharp>
+
+    </Content>
+
+</MainSection>
