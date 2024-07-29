@@ -1,5 +1,5 @@
 ﻿
-<MainSection Heading="Setup" Id="setup" Icon="fa-info">
+<MainSection Heading="Setup" Id="setup" Icon="fa-cog">
 
     <Description>
         Utility for api calls to public azure blob containers.
@@ -19,8 +19,8 @@
         <SubSection Id="clientCreation" Heading="Creating a client">
 
 <CSharp>
-    HttpClient httpClient = new();
-    IPublicBlobClient client = new PublicBlobClient(httpClient);
+HttpClient httpClient = new();
+IPublicBlobClient client = new PublicBlobClient(httpClient);
 </CSharp>
 
             <p>

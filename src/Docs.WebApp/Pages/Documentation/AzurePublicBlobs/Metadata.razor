@@ -1,0 +1,33 @@
+﻿
+<MainSection Heading="Get Metadata" Id="metadata" Icon="fa-clipboard-list">
+
+    <Description>
+        When iterating through blobs, you can access the metadata stored in each blob
+    </Description>
+
+    <Content>
+
+        <p>Create a class for the metadata</p>
+
+<CSharp>
+class MyMeta
+{
+
+    public string Description { get; set; }
+
+}
+</CSharp>
+
+        <p>Iterate through blobs</p>
+
+<CSharp>
+var blobItemsWithMeta = await client.GetContainerContentsAsync&lt;MyMeta&gt;("http://fullblockUrl.com/path/containerName");
+foreach (var item in blobItemsWithMeta.Blobs)
+    Console.WriteLine(item.Metadata.Description);
+</CSharp>
+
+
+
+    </Content>
+
+</MainSection>
