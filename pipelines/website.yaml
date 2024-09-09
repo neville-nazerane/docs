@@ -29,14 +29,6 @@ stages:
           tar -czf compressed/$(projectName).tar.gz -C published .
         displayName: Publishing Website
 
-      # - task: ArchiveFiles@2
-      #   displayName: Compress before publish
-      #   inputs:
-      #     rootFolderOrFile: published
-      #     includeRootFolder: false
-      #     archiveFile: compressed/$(projectPath).zip
-      #     verbose: true
-
       - publish: compressed
         displayName: Publish for release
         artifact: published
@@ -50,7 +42,7 @@ stages:
         environment:
           name: Development
           resourceType: VirtualMachine
-          resourceName: websites
+          resourceName: Web Server
         strategy:
           runOnce:
             deploy:
@@ -78,28 +70,3 @@ stages:
                 - task: DeleteFiles@1
                   displayName: Clean up
                               
-
-# resources:
-#   repositories:
-#     - repository: templates
-#       type: github
-#       name: neville-nazerane/Common-Pipelines
-#       endpoint: github.com_neville-nazerane
-
-# extends:
-#   template: Shared\netcore-ubuntu.yml@templates
-#   parameters:
-#     usePreRelease: false
-#     projectPath: src/Docs.WebApp
-#     projectName: Docs.WebApp
-#     destDirectory: /var/www/docs
-#     port: 5020
-
-#     service:
-#       description: Nuget documentations
-#       identifier: docs
-#       name: kestrel-docs
-#     configs:
-#       ASPNETCORE_ENVIRONMENT: Production
-    
-
