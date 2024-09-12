@@ -44,12 +44,32 @@
 
         <SubSection Id="vsSourceGen" Heading="Source Generator Comparison">
 
-            <p>
+@*             <p>
                 <a href="https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview" target="_blank">.NET source generators</a> 
                 is a powerful tool that is natively supported by .NET. It has been used to create several great libraries such as 
                 <a href="https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui">MAUI Community Toolkit</a>.
                 While source generators can be an efficient solution for such libraries, they might not always be ideal for personal projects.
-            </p>
+            </p> *@
+
+            <h3>Advantages of .NET source generators over CodeGeneratorHelpers</h3>
+
+            <ul>
+
+                <li>
+                    <strong>Better performance</strong>
+                    Since source generators run natively within .NET's build, they leverage features like incremental builds to 
+                    ensure optimized performance. The generation logic is only triggered on changed files, rather than the entire
+                    codebase, which is particularly beneficial for larger projects.
+                </li>
+
+                <li>
+                    <strong>Less setup process (once completed)</strong>
+                    Once completed, source generators could offer a smoother and more streamlined execution process because they are built into the .NET build system. 
+                    They run automatically as developers write code, instantly generating the necessary methods and properties.
+                </li>
+
+
+            </ul>
 
             <h3>Why use CodeGeneratorHelpers over .NET source generators?</h3>
             <ul>
