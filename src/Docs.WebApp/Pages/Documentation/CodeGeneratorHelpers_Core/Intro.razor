@@ -44,25 +44,60 @@
 
         <SubSection Id="vsSourceGen" Heading="Source Generator Comparison">
 
-            <p>
+@*             <p>
                 <a href="https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview" target="_blank">.NET source generators</a> 
                 is a powerful tool that is natively supported by .NET. It has been used to create several great libraries such as 
                 <a href="https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui">MAUI Community Toolkit</a>.
                 While source generators can be an efficient solution for such libraries, they might not always be ideal for personal projects.
-            </p>
+            </p> *@
 
-            <h3>Why use CodeGeneratorHelpers over .NET source generators?</h3>
+            <h3>Advantages of .NET source generators over CodeGeneratorHelpers</h3>
+
+            <ul>
+
+                <li>
+                    <strong>Better performance</strong>
+                    Since source generators run natively within .NET's build, they leverage features like incremental builds to 
+                    ensure optimized performance. The generation logic is only triggered on changed files, rather than the entire
+                    codebase, which is particularly beneficial for larger projects.
+                </li>
+
+                <li>
+                    <strong>Less setup process (once developed)</strong>
+                    Once completed, source generators could offer a smoother and more streamlined execution process because they are built into the .NET build system. 
+                    They run automatically as developers write code, instantly generating the necessary methods and properties.
+                </li>
+
+
+            </ul>
+
+            <h3>Advantages of CodeGeneratorHelpers over .NET source generators </h3>
             <ul>
                 <li>
-                    <strong>Stable workflow:</strong>
-                    Source generators often have hurdles, such as requiring Visual Studio restarts during development. 
-                    This can be a hindrance for personal projects as it disrupts the workflow
+                    <strong>Smoother Development Experience</strong>
+                    <p>
+                        CodeGeneratorHelpers would provide a more stable development experience.
+                        Source generators can be flaky during the development process,
+                        as have been known to have issues such as not immediately responding to changes made on the generator code.
+                        These issues often require a Visual Studio restart.
+                    </p> 
+                    <p>
+                        Since CodeGeneratorHelpers is used within a console app,
+                        it follows a familiar and predictable development workflow, providing smoother development overall.
+                    </p>
                 </li>
+
                 <li>
-                    <strong>Using latest .NET:</strong>
-                    Source generators need to run from a NetStandard 2.0 project. 
-                    On the other hand, the console apps that use CodeGeneratorHelpers are built on .NET 8 since they don't have to directly reference the target project
-                    This allows your code generators to leverage the latest C# features.
+                    <strong>Using the latest .NET</strong>
+                    <p>
+                        Since source generators are meant to referenced on the target project, source generators
+                        projects need to run as a .NET Standard 2.0 project.
+                        Since CodeGeneratorHelpers run in an isolated console app, they don't have such limitations. 
+                        CodeGeneratorHelpers nuget is hence created on .NET 8. 
+                        This allows developers to leverage the latest .NET features which can result in optimized features 
+                        and cleaner syntax.
+                    </p>
+
                 </li>
             </ul>
 
