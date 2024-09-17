@@ -1,11 +1,13 @@
 ﻿@page "/"
 
+
+
 <div class="page-header theme-bg-dark py-5 text-center position-relative">
     <div class="theme-bg-shapes-right"></div>
     <div class="theme-bg-shapes-left"></div>
     <div class="container">
         <h1 class="page-heading single-col-max mx-auto">Documentation</h1>
-        <div class="page-intro single-col-max mx-auto">Everything documented on my nugets...</div>
+        <div class="page-intro single-col-max mx-auto">Search through the documentations...</div>
         <div class="main-search-box pt-3 d-block mx-auto">
             <div class="search-form w-100">
                 <input type="text" placeholder="Search the docs..." @bind=Query @bind:event="oninput" class="form-control search-input">
@@ -25,33 +27,39 @@
 
                 @if (displaying is null)
                 {
-                    <div>Loading packages...</div>
+                    <div>Loading items...</div>
                 }
                 else
                 {
-                    @foreach (var package in displaying)
+                    @foreach (var item in displaying)
                     {
 
                         <div class="col-12 col-lg-4 py-3">
                             <div class="card shadow-sm">
                                 <div class="card-body">
                                     <h5 class="card-title mb-3">
-                                        <span class="card-title-text" title="@package.Name">@package.Name</span>
+                                        <span class="card-title-text" title="@item.Name">@item.Name</span>
                                     </h5>
                                     <div class="card-text">
-                                        @package.Description
+                                        @item.Description
                                         <partial name="_Install" model="Model" />
                                     </div>
-                                    @if (package.GitRepo != null)
+                                    @if (item.GitRepo is not null)
                                     {
-                                        <a class="btn btn-github" href="@package.GitUrl">
+                                        <a class="btn" target="_blank" href="@item.GitUrl">
                                             <i class="fab fa-github"></i>
                                         </a>
                                     }
-                                    @if (package.HasDocumentation)
+                                    @if (item.HasDocumentation)
                                     {
-                                        <a class="btn btn-github" href="documentation/@package.Name.Replace(".", "_")">
+                                        <a class="btn" href="documentation/@item.Path">
                                             <i class="fas fa-book"></i>
+                                        </a>
+                                    }
+                                    @if (item.NugetName is not null)
+                                    {
+                                        <a class="btn" target="_blank" href="@item.NugetUrl">
+                                            <i class="fas fa-cube"></i>
                                         </a>
                                     }
                                     @*<a class="card-link-mask" href="~/@Model.Name"></a>*@

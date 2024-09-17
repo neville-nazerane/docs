@@ -42,6 +42,8 @@ namespace Docs.WebApp.Pages
             if (!string.IsNullOrEmpty(Query))
             {
                 result = result.Where(p => p.Name.Contains(Query, StringComparison.OrdinalIgnoreCase)
+                                        || p.Description.Contains(Query, StringComparison.OrdinalIgnoreCase)
+                                        || p.NugetName.Contains(Query, StringComparison.OrdinalIgnoreCase)
                                         || p.Tags?.Any(t => t == Query) == true
                                         || p.GitRepo?.Contains(Query, StringComparison.OrdinalIgnoreCase) == true);
             }

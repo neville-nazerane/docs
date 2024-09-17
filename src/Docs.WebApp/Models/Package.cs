@@ -8,14 +8,23 @@ namespace Docs.WebApp.Models
 {
     public class Package
     {
+        private string _path;
 
         public string Name { get; set; }
+
+        public string Path 
+        { 
+            get => _path ?? Name; 
+            set => _path = value; 
+        }
 
         public string Description { get; set; }
 
         public string GitRepo { get; set; }
 
         public bool IsDisplayed { get; set; }
+
+        public string NugetName { get; set; }
 
         public bool HasDocumentation { get; set; }
 
@@ -25,7 +34,7 @@ namespace Docs.WebApp.Models
 
         public string GitClone => $"git clone {GitUrl}.git";
 
-        public string NugetUrl => $"https://www.nuget.org/packages/{Name}/";
+        public string NugetUrl => $"https://www.nuget.org/packages/{NugetName}/";
 
     }
 }

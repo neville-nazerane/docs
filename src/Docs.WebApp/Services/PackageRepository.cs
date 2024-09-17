@@ -1,6 +1,7 @@
 ﻿using Docs.WebApp.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,20 +14,34 @@ namespace Docs.WebApp.Services
 
         public static IEnumerable<Package> All
             => all ??= [
-                    new(){
+                    new()
+                    {
                         Name = "AzurePublicBlobs",
+                        NugetName = "AzurePublicBlobs",
                         Description = "Utility for public azure blob containers",
                         GitRepo = "AzurePublicBlobs",
                         IsDisplayed = true,
                         HasDocumentation = true,
                     },
-                    new(){
-                        Name = "CodeGeneratorHelpers.Core",
+                    new()
+                    {
+                        Name = "CodeGeneratorHelpers",
+                        NugetName = "CodeGeneratorHelpers.Core",
+                        Path = "CodeGeneratorHelpers_Core",
                         Description = "Utility for code generation using console apps",
                         GitRepo = "Code-Generators",
                         IsDisplayed = true,
                         HasDocumentation = true,
                     },
+                    new()
+                    {
+                        Name = "Deploy .NET on ubuntu VM",
+                        Path = "Net2Linux",
+                        Description = "Deploy .NET applications into a linux VM using azure devops",
+                        IsDisplayed = true,
+                        HasDocumentation = true,
+                    },
+
                     // new() {
                     //    Name = "NetCore.Apis.Consumer",
                     //    Description = "Helper to consume rest API set up on .net core.",
