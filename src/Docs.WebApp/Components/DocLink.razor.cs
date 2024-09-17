@@ -13,6 +13,7 @@ namespace Docs.WebApp.Components
         [Parameter]
         public string Document { get; set; }
 
+        [Obsolete("Doesn't make much sense with the 'no nuget' update")]
         public bool HasDocumentationEnabled(string documentation)
             => PackageRepository.All
                                 .SingleOrDefault(d => d.Name == documentation)?
