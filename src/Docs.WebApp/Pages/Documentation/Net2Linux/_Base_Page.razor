@@ -1,0 +1,8 @@
+﻿@page "/documentation/Net2Linux"
+
+
+<h3>What is your project type? @projectType</h3>
+
+<button class="btn btn-primary" @onclick=@(() => SelectType(DotNetProjectType.Api))>API</button>
+<button class="btn btn-primary" @onclick=@(() => SelectType(DotNetProjectType.Worker))>Worker</button>
+<button class="btn btn-primary" @onclick=@(() => SelectType(DotNetProjectType.Wasm))>Blazor</button>

@@ -12,5 +12,12 @@ namespace Microsoft.AspNetCore.Components
             => manager.Uri?.Replace(manager.BaseUri, string.Empty)
                       .Split("#").First();
 
+        public static string GetQueryParm(this NavigationManager manager, string parmName)
+        {
+            var uriBuilder = new UriBuilder(manager.Uri);
+            var q = System.Web.HttpUtility.ParseQueryString(uriBuilder.Query);
+            return q[parmName];
+        }
+
     }
 }

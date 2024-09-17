@@ -16,8 +16,9 @@ namespace Docs.WebApp.Services
             => all ??= [
                     new()
                     {
-                        Name = "AzurePublicBlobs",
+                        Name = "Azure Public Blobs",
                         NugetName = "AzurePublicBlobs",
+                        Path = "AzurePublicBlobs",
                         Description = "Utility for public azure blob containers",
                         GitRepo = "AzurePublicBlobs",
                         IsDisplayed = true,
