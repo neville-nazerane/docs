@@ -1,17 +1,30 @@
 ﻿@page "/documentation/Net2Linux"
 
-
-<h3>What is your project type?</h3>
-
-<EnumButtons TEnum="DotNetProjectType" SelectedEnum=projectType OnSelectionChanged=SelectProjectType />
-
-<h3>First time setting up this VM?</h3>
-
-<EnumButtons TEnum="VmSetupType" SelectedEnum=setupType OnSelectionChanged=SelectSetupType />
-
-@if (projectType is not null && setupType is not null)
+@if (!isSubmitted)
 {
-    <div>
-        <button class="btn btn-success" @onclick=Submit>Submit</button>
-    </div>
+    <h3>What is your project type?</h3>
+
+    <EnumButtons TEnum="DotNetProjectType" SelectedEnum=projectType OnSelectionChanged=SelectProjectType />
+
+    <h3>First time setting up this VM?</h3>
+
+    <EnumButtons TEnum="VmSetupType" SelectedEnum=setupType OnSelectionChanged=SelectSetupType />
+
+    @if (projectType is not null && setupType is not null)
+    {
+        <div>
+            <button class="btn btn-success" @onclick=Submit>Submit</button>
+        </div>
+    }
+}
+else
+{
+
+    <h1>Hello world</h1>
+    @if (setupType == VmSetupType.New)
+    {
+        <DotnetInstall />
+    }
+
+
 }
