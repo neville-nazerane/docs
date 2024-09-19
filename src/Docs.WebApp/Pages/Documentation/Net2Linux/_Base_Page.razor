@@ -1,8 +1,11 @@
 ﻿@page "/documentation/Net2Linux"
 
 
-<h3>What is your project type? @projectType</h3>
+<h3>What is your project type?</h3>
 
-<button class="btn btn-primary" @onclick=@(() => SelectType(DotNetProjectType.Api))>API</button>
-<button class="btn btn-primary" @onclick=@(() => SelectType(DotNetProjectType.Worker))>Worker</button>
-<button class="btn btn-primary" @onclick=@(() => SelectType(DotNetProjectType.Wasm))>Blazor</button>
+<EnumButtons TEnum="DotNetProjectType" SelectedEnum=projectType OnSelectionChanged=SelectType />
+
+<h3>First time setting up this VM?</h3>
+
+<EnumButtons TEnum="DotNetProjectType" IsVertical=true />
+

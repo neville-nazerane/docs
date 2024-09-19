@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components.Routing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +13,17 @@ namespace Microsoft.AspNetCore.Components
             => manager.Uri?.Replace(manager.BaseUri, string.Empty)
                       .Split("#").First();
 
-        public static string GetQueryParm(this NavigationManager manager, string parmName)
+        public static string GetQueryParam(this NavigationManager manager, string name)
+            => manager.Uri.GetQueryParam(name);
+
+        public static string GetQueryParam(this LocationChangedEventArgs locationChanged, string name)
+            => locationChanged.Location.GetQueryParam(name);
+
+        static string GetQueryParam(this string uri, string name)
         {
-            var uriBuilder = new UriBuilder(manager.Uri);
+            var uriBuilder = new UriBuilder(uri);
             var q = System.Web.HttpUtility.ParseQueryString(uriBuilder.Query);
-            return q[parmName];
+            return q[name];
         }
 
     }
