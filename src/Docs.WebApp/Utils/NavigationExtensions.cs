@@ -19,6 +19,12 @@ namespace Microsoft.AspNetCore.Components
         public static string GetQueryParam(this LocationChangedEventArgs locationChanged, string name)
             => locationChanged.Location.GetQueryParam(name);
 
+        public static void SetQueryParameter(this NavigationManager manager, string key, string value)
+        {
+            var url = manager.GetUriWithQueryParameter(key, value);
+            manager.NavigateTo(url, false, true);
+        }
+
         static string GetQueryParam(this string uri, string name)
         {
             var uriBuilder = new UriBuilder(uri);

@@ -1,11 +1,11 @@
 ﻿@typeparam TEnum where TEnum : struct, Enum
 
-<div class="@(IsVertical ? "btn-group-vertical" : "btn-group")" role="group">
+<div class="align-middle btn-group-lg @(IsVertical ? "btn-group-vertical" : "btn-group")" role="group">
     @foreach (var value in Enum.GetValues<TEnum>())
     {
         <button class="btn @(SelectedEnum.HasValue && SelectedEnum.Equals(value) ? "btn-primary" : "btn-warning")"
                 @onclick=@(() => SelectType(value))>
-            @value
+            @GetName(value)
         </button>
     }
 </div>

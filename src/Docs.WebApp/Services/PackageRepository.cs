@@ -37,7 +37,7 @@ namespace Docs.WebApp.Services
                     new()
                     {
                         Name = "Deploy .NET on ubuntu VM",
-                        Path = "Net2Linux",
+                        Path = "Net2Linux?setup=New",
                         Description = "Deploy .NET applications into a linux VM using azure devops",
                         IsDisplayed = true,
                         HasDocumentation = true,
