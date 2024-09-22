@@ -1,0 +1,19 @@
+﻿ @inject Net2LinuxState State
+
+<MainSection Id="certbot" Heading="Certbot (SSL)">
+
+    <Content>
+
+        @if (State.SetupType == VmSetupType.New)
+        {
+            <SubSection Id="certbotInstall" Heading="Installation">
+
+            </SubSection>
+        }
+
+        <SubSection Id="sslSetup" Heading="SSL Setup">
+
+        </SubSection>
+    </Content>
+
+</MainSection>

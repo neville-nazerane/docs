@@ -1,4 +1,5 @@
-﻿using Docs.WebApp.Models.Enumerations;
+﻿using Docs.WebApp.Models;
+using Docs.WebApp.Models.Enumerations;
 using Microsoft.AspNetCore.Components;
 using System;
 
@@ -14,8 +15,9 @@ namespace Docs.WebApp.Pages.Documentation.Net2Linux
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        DotNetProjectType? projectType;
-        VmSetupType? setupType;
+        [Inject]
+        public Net2LinuxState State { get; set; }
+
         bool isSubmitted;
 
         protected override void OnInitialized()
@@ -51,26 +53,36 @@ namespace Docs.WebApp.Pages.Documentation.Net2Linux
 
         void RefreshProjectType(string project)
         {
-            if (project is null) return;
-            if (Enum.TryParse<DotNetProjectType>(project, out var res))
+            if (project is not null)
             {
-                projectType = res;
-                StateHasChanged();
+                if (Enum.TryParse<DotNetProjectType>(project, out var res))
+                {
+                    State.ProjectType = res;
+                    StateHasChanged();
+                    return;
+                }
+                else
+                    Console.WriteLine("Failed to find project type " + project);
             }
-            else
-                Console.WriteLine("Failed to find project type " + project);
+            State.ProjectType = null;
+            StateHasChanged();
         }
 
         void RefreshVmSetupType(string setup)
         {
-            if (setup is null) return;
-            if (Enum.TryParse<VmSetupType>(setup, out var res))
+            if (setup is not null)
             {
-                setupType = res;
-                StateHasChanged();
+                if (Enum.TryParse<VmSetupType>(setup, out var res))
+                {
+                    State.SetupType = res;
+                    StateHasChanged();
+                    return;
+                }
+                else
+                    Console.WriteLine("Failed to find setup type " + setup);
             }
-            else
-                Console.WriteLine("Failed to find setup type " + setup);
+            State.SetupType = null;
+            StateHasChanged();
         }
 
         void RefreshIsSubmitted(string submitted)

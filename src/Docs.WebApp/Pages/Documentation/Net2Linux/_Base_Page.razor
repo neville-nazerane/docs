@@ -4,13 +4,13 @@
 {
     <h3>What is your project type?</h3>
 
-    <EnumButtons TEnum="DotNetProjectType" SelectedEnum=projectType OnSelectionChanged=SelectProjectType />
+    <EnumButtons TEnum="DotNetProjectType" SelectedEnum=State.ProjectType OnSelectionChanged=SelectProjectType />
 
     <h3>First time setting up this VM?</h3>
 
-    <EnumButtons TEnum="VmSetupType" SelectedEnum=setupType OnSelectionChanged=SelectSetupType />
+    <EnumButtons TEnum="VmSetupType" SelectedEnum=State.SetupType OnSelectionChanged=SelectSetupType />
 
-    @if (projectType is not null && setupType is not null)
+    @if (State.ProjectType is not null && State.SetupType is not null)
     {
         <div>
             <button class="btn btn-success" @onclick=Submit>Submit</button>
@@ -20,11 +20,14 @@
 else
 {
 
-    <h1>Hello world</h1>
-    @if (setupType == VmSetupType.New)
-    {
-        <DotnetInstall />
-    }
+    <DotnetInstall />
 
+
+    <Pipeline />
+    <Nginx />
+    <Certbot />
+@* 
+
+     *@
 
 }

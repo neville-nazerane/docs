@@ -1,0 +1,23 @@
+﻿ @inject Net2LinuxState State
+
+
+<MainSection Id="nginxSetup" Heading="Nginx Setup">
+
+
+
+    <Content>
+        @if (State.SetupType == VmSetupType.New)
+        {
+
+            <SubSection Id="nginxInstall" Heading="Installation">
+
+            </SubSection>
+
+        }
+        <SubSection Id="nginxRecord" Heading="Adding a new record">
+
+        </SubSection>
+
+    </Content>
+
+</MainSection>
