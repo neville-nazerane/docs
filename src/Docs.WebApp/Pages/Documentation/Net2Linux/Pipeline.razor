@@ -42,22 +42,22 @@ pool:
 
             <YAML>
 
-                - stage:
-                  displayName: Building .NET app
-                  jobs:
+- stage:
+    displayName: Building .NET app
+    jobs:
 
-                  - job: Compile
-                    steps:
+    - job: Compile
+    steps:
 
-                    - script: |
-                        dotnet publish $(projectPath) -c release -o published
-                        mkdir -p compressed
-                        tar -czf compressed/$(projectName).tar.gz -C published .
-                      displayName: Generating and compressing binaries
+    - script: |
+        dotnet publish $(projectPath) -c release -o published
+        mkdir -p compressed
+        tar -czf compressed/$(projectName).tar.gz -C published .
+        displayName: Generating and compressing binaries
 
-                    - publish: compressed
-                      displayName: Publish for release
-                      artifact: published
+    - publish: compressed
+        displayName: Publish for release
+        artifact: published
 
             </YAML>
 
