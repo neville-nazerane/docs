@@ -29,6 +29,41 @@ pool:
         <SubSection Id="pipelineBuild" Heading="Build">
 
             <p>
+
+                For the build process, we first make sure we compile the .NET app.
+                We then compress the binaries into .tar.gz file since it is natively supported by Linux.
+                Once the compressed file is created, we can then publish it as an artiface for future stages to use them.
+            </p>
+
+            <p>
+                Here is how the entire stage should look:
+            </p>
+
+
+            <YAML>
+
+                - stage:
+                  displayName: Building .NET app
+                  jobs:
+
+                  - job: Compile
+                    steps:
+
+                    - script: |
+                        dotnet publish $(projectPath) -c release -o published
+                        mkdir -p compressed
+                        tar -czf compressed/$(projectName).tar.gz -C published .
+                      displayName: Generating and compressing binaries
+
+                    - publish: compressed
+                      displayName: Publish for release
+                      artifact: published
+
+            </YAML>
+
+
+
+            <p>
                 During the build process, you would prepare the binaries of your .NET app as a compressed file.
                 Here, we are creating a .tar.gz file since it is natively supported by Linux.
             </p>
