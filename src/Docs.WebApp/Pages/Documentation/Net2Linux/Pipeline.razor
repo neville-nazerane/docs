@@ -3,9 +3,67 @@
 
 <MainSection Id="pipelineSetup" Heading="Pipeline setup">
 
+    <Description>
+
+        <p>
+            Once dotnet is installed, you can now setup the CI/CD pipeline to deploy your
+            app onto the VM. To being creating your pipeline, create a new YAML file inside your git repository.
+            For instance, in the root folder, you can create a file pipelines/deploy.yaml.
+
+        </p>
+
+        <p>
+            To begin creating your pipeline, set the latest Linux agent as the default pool.
+
+            <YAML>
+pool: TODO
+
+
+            </YAML>
+
+        </p>
+
+    </Description>
+
     <Content>
 
         <SubSection Id="pipelineBuild" Heading="Build">
+
+            <p>
+                During the build process, you would prepare the binaries of your .NET app as a compressed file.
+                Here, we are creating a .tar.gz file since it is natively supported by Linux.
+            </p>
+
+            <p>
+                For this process, we first add a script into the YAML to, compile the code,
+                and compress the output into a .tar.gz file.
+            </p>
+
+            <YAML>
+- script: |
+  dotnet publish $(projectPath) -c release -o published
+  mkdir -p compressed
+  tar -czf compressed/$(projectName).tar.gz -C published .
+  displayName: Generating and compressing binaries
+            </YAML>
+
+
+            <p>
+                The above code assumes you have a pipeline variable 'projectPath' that contains the
+                full path to the .net app you wish to deploy.
+                The code creates the binaries into a folder called 'published' and then compresses the binaries and saves them
+                under a new folder named 'compressed'
+            </p>
+
+            <p>
+                In the next task, we can publish the compressed binaries to be used by future stages
+            </p>
+
+            <YAML>
+- publish: compressed
+  displayName: Publish for release
+  artifact: published
+            </YAML>
 
         </SubSection>
 

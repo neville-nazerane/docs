@@ -1,0 +1,130 @@
+﻿@inject Net2LinuxState State
+
+@if (State.SetupType == VmSetupType.New)
+{
+
+    <MainSection Id="vmSetup" Heading="Setting up the linux device">
+
+        <Description>
+
+            This documentation assumes the following:
+
+            <ul>
+                <li>
+                    You already have a virtual machine purchased or a physical machine prepared
+                </li>
+                <li>
+                    You already have your .NET app in a GIT repository
+                </li>
+                <li>
+                    You intend on using azure DevOps for your CI/CD pipeline and already have
+                    a project setup on azure DevOps. 
+                </li>
+            </ul>
+
+        </Description>
+
+        <Content>
+
+            <SubSection Id="dotnetInstall" Heading="Installing Dotnet">
+
+                <p>
+                    For a hosting server, installing the latest dotnet runtime should be
+                    sufficient as opposed to the SDK.
+                </p>
+
+                <Bash>
+sudo apt-get update && \
+    sudo apt-get install -y aspnetcore-runtime-8.0
+                </Bash>
+
+                <p>
+                    Once installed, you can verify the installation using the command <code>dotnet --info</code>.
+                    If the above command doesn't work, your linux distribution or architecture might
+                    require a different installation process. Please use the official documentation
+                    <ExternalLink Url="https://learn.microsoft.com/en-us/dotnet/core/install/linux" />
+                    to view the steps to install for your specific VM setup.
+                </p>
+
+
+            </SubSection>
+
+
+            <SubSection Id="devopsEnv" Heading="Setup DevOps Environment">
+
+                <p>
+                    To deploy code to your Linux machine via azure DevOps, you would first need
+                    to setup an environment in azure DevOps and associate your machine to it.
+                    Environments also help you monitor past deployments.
+                </p>
+
+                <p>
+                    To create a new environment, go to your project on DevOps, from the left menu,
+                    go to Pipelines > Environments. 
+                    Select "New environment" at the top right of the page.
+                </p>
+
+                <p>
+                    On the popup, enter a preferred environment name (let's call it <b>MyEnvironment</b> in this documentation).
+                    Under the 'Resource' section, select 'virtual machines' and click next.
+                </p>
+
+                <p>
+                    On the following popup, make sure the 'Operating System' is selected as Linux. Doing so would
+                    produce a 'Registration script'. Copy paste this script into any text editor. There are a couple of 
+                    things to double check before executing this script:
+
+                    <ul>
+                        <li>
+                            <strong>VM Name</strong>
+                            The VM name will serve as the identifier to reference your Linux machine within <b>MyEnvironment</b>.
+                            The script defaults this name your Linux machine's host name. If you wish to change this name,
+                            search for $HOSTNAME in the script (there should be 2 occurrences) and replace them with a name
+                            of your choice within single quotes.
+                        </li>
+
+                        <li>
+                            <strong>VM Architecture</strong>
+                            The script assumes your machine's architecture is 64x. If you are not sure of your architecture,
+                            you can run <code></code>. If your architecture isn't 64x, you can use the following steps to 
+                            change them:
+                            TODO
+                            <ul>
+                                <li>Find the URL in the script that ends with .tar.
+                                </li>
+                                <li>
+                                    To ensure you are taken to the right destination, copy the file name and paste it within
+                                    quotes on a google search. For instance, if the URL in the script is https://batman.com/something.tar, 
+                                    you would google "something.tar" (make sure to include quotes). The search result should 
+                                    take you to the github page with URLs for all architectures.
+                                </li>
+                                <li>
+                                    Copy the URL from the git page, and replace all instances of the URL on the script
+                                    (there should be 2 occurrences).
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+
+                <p>
+                    Once the necessary modifications are done on the script, the script can be run on the Linux machine.
+
+                    On running the script, you can validate if it worked fine by going into your environment and check 
+                    the resources tab. It must show a new device listed with the VM name you had selected (or defaults to your host name).
+                    Also make sure the status is shown in green as 'Running'. If shown as running, restart your Linux machine to 
+                    ensure it still runs on restart.
+
+                    If there are any issues with the agent running (such as it never started or stopped after a restart),
+                    follow the following steps to manually run the agent on startup:
+
+                    TODO
+                </p>
+
+            </SubSection>
+
+        </Content>
+
+
+    </MainSection>
+}
