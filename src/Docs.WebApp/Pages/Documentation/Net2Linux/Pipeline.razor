@@ -16,9 +16,8 @@
             To begin creating your pipeline, set the latest Linux agent as the default pool.
 
             <YAML>
-pool: TODO
-
-
+pool:
+  vmImage: ubuntu-latest
             </YAML>
 
         </p>
@@ -41,9 +40,9 @@ pool: TODO
 
             <YAML>
 - script: |
-  dotnet publish $(projectPath) -c release -o published
-  mkdir -p compressed
-  tar -czf compressed/$(projectName).tar.gz -C published .
+    dotnet publish $(projectPath) -c release -o published
+    mkdir -p compressed
+    tar -czf compressed/$(projectName).tar.gz -C published .
   displayName: Generating and compressing binaries
             </YAML>
 
