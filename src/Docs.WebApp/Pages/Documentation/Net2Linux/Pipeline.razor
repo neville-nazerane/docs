@@ -61,44 +61,6 @@ pool:
 
             </YAML>
 
-
-
-            <p>
-                During the build process, you would prepare the binaries of your .NET app as a compressed file.
-                Here, we are creating a .tar.gz file since it is natively supported by Linux.
-            </p>
-
-            <p>
-                For this process, we first add a script into the YAML to, compile the code,
-                and compress the output into a .tar.gz file.
-            </p>
-
-            <YAML>
-- script: |
-    dotnet publish $(projectPath) -c release -o published
-    mkdir -p compressed
-    tar -czf compressed/$(projectName).tar.gz -C published .
-  displayName: Generating and compressing binaries
-            </YAML>
-
-
-            <p>
-                The above code assumes you have a pipeline variable 'projectPath' that contains the
-                full path to the .net app you wish to deploy.
-                The code creates the binaries into a folder called 'published' and then compresses the binaries and saves them
-                under a new folder named 'compressed'
-            </p>
-
-            <p>
-                In the next task, we can publish the compressed binaries to be used by future stages
-            </p>
-
-            <YAML>
-- publish: compressed
-  displayName: Publish for release
-  artifact: published
-            </YAML>
-
         </SubSection>
 
         <SubSection Id="pipelineDeploy" Heading="Deploy">
