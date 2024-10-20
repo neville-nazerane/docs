@@ -1,5 +1,20 @@
 ﻿@import url('site.min.css');
 
+.left-nav {
+    position: relative;
+    display: inline-block;
+}
+
+.docs-logo-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.docs-top-utilities {
+    display: inline-block !important;
+    float: right;
+}
+
 span.card-title-text {
     display: block !important;
 }

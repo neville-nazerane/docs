@@ -21,7 +21,11 @@ window.fixCodePadding = id => {
 
 window.toggleDropdown = id => {
     var e = document.getElementById(id);
-    new bootstrap.Dropdown(e).toggle();
+    var dropdown = new bootstrap.Dropdown(e);
+    if (dropdown._menu.classList.contains('show'))
+        dropdown.hide();
+    else
+        dropdown.show();
 }
 
 function startup() {
