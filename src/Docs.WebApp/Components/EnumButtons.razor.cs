@@ -31,11 +31,6 @@ namespace Docs.WebApp.Components
                     return desc.Description;
 
             return value.ToString();
-
-            //var attribute = field?.GetCustomAttributes(typeof(DescriptionAttribute), false)
-            //                    .FirstOrDefault() as DescriptionAttribute;
-
-            //return attribute != null ? attribute.Description : value.ToString();
         }
 
     }
