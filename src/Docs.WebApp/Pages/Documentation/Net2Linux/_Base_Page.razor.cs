@@ -1,6 +1,9 @@
 ﻿using Docs.WebApp.Models;
+using Docs.WebApp.Models.Attributes;
 using Docs.WebApp.Models.Enumerations;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.JSInterop;
 using System;
 
 namespace Docs.WebApp.Pages.Documentation.Net2Linux
@@ -18,6 +21,9 @@ namespace Docs.WebApp.Pages.Documentation.Net2Linux
         [Inject]
         public Net2LinuxState State { get; set; }
 
+        [Inject]
+        public IJSRuntime JS { get; set; }
+
         bool isSubmitted;
 
         protected override void OnInitialized()
@@ -29,11 +35,19 @@ namespace Docs.WebApp.Pages.Documentation.Net2Linux
             NavigationManager.LocationChanged += LocationChanged;
         }
 
-        private void LocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+        private void LocationChanged(object sender, LocationChangedEventArgs e)
         {
             RefreshProjectType(e.GetQueryParam(PROJECT_KEY));
             RefreshVmSetupType(e.GetQueryParam(SETUP_KEY));
             RefreshIsSubmitted(e.GetQueryParam(SUBMITTED_KEY));
+        }
+
+        string GetSummary<TEnum>(Enum val)
+            where TEnum : struct, Enum
+        {
+            var field = typeof(TEnum).GetField(val.ToString());
+            var attr = (SummaryAttribute)Attribute.GetCustomAttribute(field, typeof(SummaryAttribute));
+            return attr?.Summary;
         }
 
         void SelectProjectType(DotNetProjectType selection)

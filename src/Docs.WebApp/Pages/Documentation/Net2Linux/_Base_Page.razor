@@ -21,7 +21,39 @@ else
 {
 
     <LeftNav>
-        This is linux device setup
+
+        <li class="list-inline-item">
+
+            <div class="btn-group">
+                <button @onclick=@(() => JS.ToggleDropdownAsync("project-type-drop")) type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    @(GetSummary<DotNetProjectType>(State.ProjectType.Value))
+                </button>
+                <ul class="dropdown-menu" id="project-type-drop">
+                    @foreach (var val in Enum.GetValues<DotNetProjectType>())
+                    {
+                        <li><a class="dropdown-item" href="#">@(GetSummary<DotNetProjectType>(val))</a></li>
+                    }
+                </ul>
+            </div>
+
+        </li>
+
+        <li class="list-inline-item">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    @(GetSummary<VmSetupType>(State.SetupType.Value))
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach (var val in Enum.GetValues<VmSetupType>())
+                    {
+                        <li><a class="dropdown-item" href="#">@(GetSummary<VmSetupType>(val))</a></li>
+                    }
+                </ul>
+            </div>
+
+        </li>
+
     </LeftNav>
 
 

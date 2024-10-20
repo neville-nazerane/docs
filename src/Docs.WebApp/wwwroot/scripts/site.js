@@ -10,7 +10,6 @@ window.rendered = (firstTime) => {
         renderEvents[i](firstTime);
 };
 
-
 window.fixCodePadding = id => {
     setTimeout(() => {
         var e = document.getElementById(id);
@@ -18,6 +17,11 @@ window.fixCodePadding = id => {
         e.innerHTML = e.innerHTML.replace(/^\s+|\s+$/g, '');
 
     }, 200);
+}
+
+window.toggleDropdown = id => {
+    var e = document.getElementById(id);
+    new bootstrap.Dropdown(e).toggle();
 }
 
 function startup() {
