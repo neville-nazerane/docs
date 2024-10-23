@@ -25,6 +25,8 @@ namespace Docs.WebApp.Pages.Documentation.Net2Linux
         public IJSRuntime JS { get; set; }
 
         bool isSubmitted;
+        bool isProjectTypeDropShowing;
+        bool isSetupTypeDropShowing;
 
         protected override void OnInitialized()
         {
@@ -33,6 +35,18 @@ namespace Docs.WebApp.Pages.Documentation.Net2Linux
             RefreshIsSubmitted(NavigationManager.GetQueryParam(SUBMITTED_KEY));
             base.OnInitialized();
             NavigationManager.LocationChanged += LocationChanged;
+        }
+
+        void SwitchProjectTypeDrop()
+        {
+            isProjectTypeDropShowing = !isProjectTypeDropShowing;
+            isSetupTypeDropShowing = false;
+        }
+
+        void SwitchSetupTypeDrop()
+        {
+            isSetupTypeDropShowing = !isSetupTypeDropShowing;
+            isProjectTypeDropShowing = false;
         }
 
         private void LocationChanged(object sender, LocationChangedEventArgs e)
@@ -52,6 +66,7 @@ namespace Docs.WebApp.Pages.Documentation.Net2Linux
 
         void SelectProjectType(DotNetProjectType selection)
         {
+            Console.WriteLine("using " + selection);
             NavigationManager.SetQueryParameter(PROJECT_KEY, selection.ToString());
         }
 

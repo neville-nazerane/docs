@@ -20,33 +20,42 @@
 else
 {
 
+
+
     <LeftNav>
 
         <li class="list-inline-item">
-                <button @onclick=@(() => JS.ToggleDropdownAsync("project-type-drop")) type="button" class="btn btn-sm btn-primary" aria-expanded="false">
+
+            <button @onclick=SwitchProjectTypeDrop type="button" class="btn btn-sm btn-primary" aria-expanded="false">
                 @(GetSummary<DotNetProjectType>(State.ProjectType.Value))
             </button>
 
-            <ul class="dropdown-menu" id="project-type-drop">
-                @foreach (var val in Enum.GetValues<DotNetProjectType>())
-                {
-                    <li><a class="dropdown-item" href="#">@(GetSummary<DotNetProjectType>(val))</a></li>
-                }
-            </ul>
+            @if (isProjectTypeDropShowing)
+            {
+                <ul class="dropdown-menu show" id="project-type-drop">
+                    @foreach (var val in Enum.GetValues<DotNetProjectType>())
+                    {
+                        <li><a @onclick="@(() => SelectProjectType(val))" @onclick:preventDefault class="dropdown-item" href="#">@(GetSummary<DotNetProjectType>(val))</a></li>
+                    }
+                </ul>
+            }
 
         </li>
 
         <li class="list-inline-item">
 
-            <button @onclick=@(() => JS.ToggleDropdownAsync("setup-type-drop")) type="button" class="btn btn-sm btn-primary" aria-expanded="false">
+            <button @onclick=SwitchSetupTypeDrop type="button" class="btn btn-sm btn-primary" aria-expanded="false">
                 @(GetSummary<VmSetupType>(State.SetupType.Value))
             </button>
-            <ul class="dropdown-menu" id="setup-type-drop">
-                @foreach (var val in Enum.GetValues<VmSetupType>())
-                {
-                    <li><a class="dropdown-item" href="#">@(GetSummary<VmSetupType>(val))</a></li>
-                }
-            </ul>
+            @if (isSetupTypeDropShowing)
+            {
+                <ul class="dropdown-menu show" id="setup-type-drop">
+                    @foreach (var val in Enum.GetValues<VmSetupType>())
+                    {
+                        <li><a @onclick="@(() => SelectSetupType(val))" @onclick:preventDefault class="dropdown-item" href="#">@(GetSummary<VmSetupType>(val))</a></li>
+                    }
+                </ul>
+            }
         </li>
 
     </LeftNav>
